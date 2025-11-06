@@ -14,7 +14,7 @@ This repository hosts all documentation and code related to the UWE IT Practice 
 ## Contents
 - `Client Communication/` - Emails, meeting notes, contact logs  
 - `Project Management/` - Gantt Chart, Risk Register, Weekly Reports  
-- `Code/` – Python & integration files  
+- `Code/` - Python & integration files  
 - `Documentation/` - Contract, BID form, Profiles, Reports  
 - `Meetings/` - Agendas, Minutes, Attendance  
 
