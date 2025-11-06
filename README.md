@@ -5,7 +5,7 @@ This repository hosts all documentation and code related to the UWE IT Practice 
 
 ## Team Members
 - Joel Shelvi (Project Manager)
-- Min Khant (Deputy Lead / Technical Coordinator)
+- Min Khant (Client Liaison & Communication Manager)
 - Jaime Pozo Villar (Technical & Documentation Lead)
 - Ahmed Farah (Research & Analysis Leads)
 - Thomas Jevtic (Analysis Support)
