@@ -306,6 +306,19 @@
     </footer>
 
     <script>
+    // Who ArtLifespace are (mission, charity, creative spaces)
+    // Their venues (The Island, The Arts Mansion, etc.)
+    // General enquiry categories
+    // Booking enquiries
+    // Space availability
+    // Events
+    // Accessibility
+    // Contact info
+    // High-level project context
+    // “This chatbot supports the digital enquiry system we’re prototyping.”
+    // “It helps users find basic information and route enquiries.”
+    // No sensitive data, no real internal policies
+    // Keep everything generic and safe
         const knowledgeCategories = [
             {
                 id: "who are we?",
@@ -331,6 +344,10 @@
                 id: "project info",
                 keywords: ["project", "prototype", "bot", "system", "support"],
                 response: "This chatbot is a prototype supporting a new digital enquiry system to help users find info and route requests efficiently."
+            },
+            {   id: "Contact Info",
+                keywords: ["contact", "email", "phone", "address", "phone number"],
+                response: "For general inquiries, email info@artspacelifespace.org or calling +441173763457."
             }
         ];
 
@@ -353,10 +370,11 @@
         function showOptions() {
             let optionsHTML = `
                 <div style="margin-bottom: 8px;"><strong>Choose a topic:</strong></div>
-                <button class="option-button" onclick="selectOption('who is asls')">Who is ASLS?</button>
+                <button class="option-button" onclick="selectOption('who are we?')">Who are we?</button>
                 <button class="option-button" onclick="selectOption('venues')">Our Venues</button>
                 <button class="option-button" onclick="selectOption('booking')">How to Book</button>
                 <button class="option-button" onclick="selectOption('accessibility')">Accessibility</button>
+                <button class="option-button" onclick="selectOption('Contact Info')">Contact Info</button>
             `;
             addMessage(optionsHTML, false, true);
         }
