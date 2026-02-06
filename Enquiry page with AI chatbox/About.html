@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+    <link rel="stylesheet" href="styles.css"></link>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artspace Lifespace - About Us</title>
+    
+        
+    
+</head>
+<body>
+
+    <div class="accessibility-banner">
+        <p>Need help? Use the chatbot prototype or jump to the enquiry form.</p>
+        <div class="toggle-buttons">
+            <button id="increase-text">Increase Text Size</button>
+            <button id="high-contrast">High Contrast Mode</button>
+        </div>
+    </div>
+
+    <header class="container">
+        <div class="logo">ASLS</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="Spaces.html">Spaces</a></li>
+                <li><a href="About.html">About</a></li>
+                <li><a href="Enquire.html">Enquire</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    
+
+        
+   
+
+    <div id="chat-window">
+        <div class="chat-header">
+            <span>Artspace Lifespace AIAssistant</span>
+            <span style="cursor:pointer" onclick="toggleChat()">✖</span>
+        </div>
+        <div id="chat-box" class="chat-messages">
+            <div class="message bot-msg">Hello! I'm the Artspace Lifespace Assistant. Before we start, what's your name?</div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="user-chat-input" placeholder="Type a message...">
+            <button onclick="processChat()">Send</button>
+        </div>
+    </div>
+
+    <div class="chatbot-launcher" onclick="toggleChat()" aria-label="Open chatbot">💬</div>
+
+    <footer>
+        <p>Contact: info@artspacelifespace.org | Registered Charity Number: 1168150</p>
+    </footer>
+
+    <script>
+    // Who ArtLifespace are (mission, charity, creative spaces)
+    // Their venues (The Island, The Arts Mansion, etc.)
+    // General enquiry categories
+    // Booking enquiries
+    // Space availability
+    // Events
+    // Accessibility
+    // Contact info
+    // High-level project context
+    // “This chatbot supports the digital enquiry system we’re prototyping.”
+    // “It helps users find basic information and route enquiries.”
+    // No sensitive data, no real internal policies
+    // Keep everything generic and safe
+        const knowledgeCategories = [
+            {
+                id: "who are we?",
+                keywords: ["who", "asls", "artspace", "lifespace", "charity", "mission"],
+                response: "Artspace Lifespace (ASLS) is a Bristol-based charity that recycles vacant buildings into creative resources like studios and event spaces."
+            },
+            {
+                id: "venues",
+                keywords: ["venue", "space", "island", "mansion", "sparks", "location", "where"],
+                response: "We manage several unique venues: The Island, Arts Mansion, Sparks Bristol, and The Vestibules. Which one would you like to know more about?"
+            },
+            {
+                id: "booking",
+                keywords: ["book", "booking", "hire", "reserve", "enquiry", "form"],
+                response: "To book a space, please fill out the enquiry form on this page or contact the specific venue via email."
+            },
+            {
+                id: "accessibility",
+                keywords: ["access", "disabled", "wheelchair", "step-free", "inclusive"],
+                response: "ASLS is committed to inclusivity. Many sites like Sparks offer step-free access and quiet spaces."
+            },
+            {
+                id: "project info",
+                keywords: ["project", "prototype", "bot", "system", "support"],
+                response: "This chatbot is a prototype supporting a new digital enquiry system to help users find info and route requests efficiently."
+            },
+            {   id: "Contact Info",
+                keywords: ["contact", "email", "phone", "address", "phone number"],
+                response: "For general inquiries, email info@artspacelifespace.org or calling +441173763457."
+            }
+        ];
+
+        let userName = "";
+
+        function toggleChat() {
+            const win = document.getElementById('chat-window');
+            win.style.display = (win.style.display === 'flex') ? 'none' : 'flex';
+        }
+
+        function addMessage(text, isUser, isHTML = false) {
+            const chatBox = document.getElementById('chat-box');
+            const msgDiv = document.createElement('div');
+            msgDiv.className = isUser ? 'message user-msg' : 'message bot-msg';
+            if (isHTML) msgDiv.innerHTML = text; else msgDiv.innerText = text;
+            chatBox.appendChild(msgDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function showOptions() {
+            let optionsHTML = `
+                <div style="margin-bottom: 8px;"><strong>Choose a topic:</strong></div>
+                <button class="option-button" onclick="selectOption('who are we?')">Who are we?</button>
+                <button class="option-button" onclick="selectOption('venues')">Our Venues</button>
+                <button class="option-button" onclick="selectOption('booking')">How to Book</button>
+                <button class="option-button" onclick="selectOption('accessibility')">Accessibility</button>
+                <button class="option-button" onclick="selectOption('Contact Info')">Contact Info</button>
+            `;
+            addMessage(optionsHTML, false, true);
+        }
+
+        function findResponse(input) {
+            const lowerInput = input.toLowerCase();
+            for (const cat of knowledgeCategories) {
+                if (cat.keywords.some(kw => lowerInput.includes(kw))) return cat.response;
+            }
+            return null;
+        }
+
+        function selectOption(choice) {
+            addMessage(choice, true);
+            const response = findResponse(choice);
+            addMessage(response || "I'm not sure, try another topic.", false);
+            setTimeout(() => {
+                addMessage(`<button class="option-button" onclick="showOptions()">⬅️ Back to main menu</button>`, false, true);
+            }, 800);
+        }
+
+        function processChat() {
+            const inputField = document.getElementById('user-chat-input');
+            const userInput = inputField.value.trim();
+            if (!userInput) return;
+
+            addMessage(userInput, true);
+            inputField.value = "";
+
+            if (!userName) {
+                userName = userInput;
+                addMessage(`Nice to meet you, ${userName}! How can I assist you?`, false);
+                showOptions(); 
+                return;
+            }
+
+            const response = findResponse(userInput);
+            if (response) {
+                addMessage(response, false);
+                setTimeout(() => {
+                    addMessage(`<button class="option-button" onclick="showOptions()">⬅️ Back to main menu</button>`, false, true);
+                }, 800);
+            } else {
+                addMessage(`I'm not sure about that, ${userName}. Try an option below:`, false);
+                showOptions();
+            }
+        }
+
+        document.getElementById('high-contrast').addEventListener('click', () => document.body.classList.toggle('high-contrast'));
+        document.getElementById('increase-text').addEventListener('click', () => document.body.classList.toggle('large-text'));
+        function scrollToForm() { document.getElementById('enquire').scrollIntoView({ behavior: 'smooth' }); }
+        document.getElementById('user-chat-input').addEventListener('keypress', (e) => { if (e.key === 'Enter') processChat(); });
+    </script>
+</body>
+</html>
