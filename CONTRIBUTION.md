@@ -1,15 +1,19 @@
 # Contribution Log – Artspace Lifespace ITP Project
 
 ## Joel (J2-SHELVI)
-- Created and formatted Timebox 2 and 3 reflections
+- Created and formatted Timebox 2 and 3 and 4 reflections
 - Drafted and uploaded Consent Form, Success Criteria, Mockup Framework
 - Designed and coded dummy page
 - Structured GitHub folders and README
 - Led document uploads and repo organisation
+- Finalised the Enquiries Chatbot
+- Updated Trello methodology
 
 ## Evan
 - Uploaded documents to GitHub (group submission)
 - Assisted with folder creation
+- Trello Set Up
+- Presentation slides
 
 ## Ahmed
 - Created Timeline 1.xlsx (Christmas Period 2025–2026)
@@ -19,3 +23,4 @@
 
 ## Thomas
 - Formatting and code review
+- 
