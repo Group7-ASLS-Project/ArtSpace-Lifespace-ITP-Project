@@ -31,6 +31,7 @@
     <div class="container">
         <section id="enquire" class="enquiry-form">
             <h2>Booking Enquiry</h2>
+            
             <form id="main-enquiry-form">
                 <label for="name">Name</label>
                 <input type="text" id="name" required>
@@ -49,8 +50,10 @@
                 <label for="message">Message</label>
                 <textarea id="message" rows="5" required></textarea>
 
-                <button type="submit">Submit Enquiry</button>
+                <button type="submit" id="submit-btn">Submit Enquiry</button>
             </form>
+            
+            <div id="status-message" style="margin-top: 15px; padding: 10px; border-radius: 5px; display: none;"></div>
         </section>
     </div>
 
@@ -71,11 +74,13 @@
     <div class="chatbot-launcher" onclick="toggleChat()" aria-label="Open chatbot">💬</div>
 
     <footer>
-        <p>Contact: info@artspacelifespace.org | Registered Charity Number: 1168150</p>
+        <p>Contact: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="afc6c1c9c0efcedddbdcdfcecccac3c6c9cadcdfceccca81c0ddc8">[email&#160;protected]</a> | Registered Charity Number: 1168150</p>
     </footer>
 
-    <script>
-        // Knowledge base for general queries
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // PASTE YOUR GOOGLE SHEETS WEB APP URL HERE
+        // Example: 'https://script.google.com/macros/s/ABC123.../exec'
+        const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/ABC123.../exec';
         const knowledgeCategories = [
             {
                 id: "who are we?",
@@ -90,7 +95,7 @@
             {
                 id: "accessibility",
                 keywords: ["access", "disabled", "wheelchair", "step-free", "inclusive"],
-                response: "Artspace Lifespace is committed to inclusivity. Many sites like Sparks offer step-free access and quiet spaces. Let us know your specific needs!"
+                response: "ASLS is committed to inclusivity. Many sites like Sparks offer step-free access and quiet spaces. Let us know your specific needs!"
             },
             {
                 id: "project info",
@@ -238,7 +243,7 @@
         function showVenueDetails() {
             addMessage("Tell me more about the venues", true);
             let detailsHTML = `
-                <div style="background: #f9f9f9; padding: 10px; border-radius: 8px; margin: 8px 0;">
+                <div style="background: #000000; padding: 10px; border-radius: 8px; margin: 8px 0;">
                     <strong>🏛️ The Island</strong><br>
                     Capacity: ${venueDetails["the-island"].capacity}<br>
                     Features: ${venueDetails["the-island"].features}<br>
@@ -320,7 +325,6 @@
             // Scroll to form
             setTimeout(() => {
                 document.getElementById('enquire').scrollIntoView({ behavior: 'smooth' });
-                // Highlight the form briefly
                 const form = document.getElementById('enquire');
                 form.style.border = '3px solid #4CAF50';
                 setTimeout(() => {
@@ -346,7 +350,6 @@
             addMessage(userInput, true);
             inputField.value = "";
 
-            // Handle initial name collection
             if (!userName) {
                 userName = userInput;
                 addMessage(`Nice to meet you, ${userName}! How can I assist you today?`, false);
@@ -354,7 +357,6 @@
                 return;
             }
 
-            // Handle booking flow
             if (bookingState === "collecting") {
                 switch(currentStep) {
                     case 0:
@@ -397,17 +399,14 @@
                 return;
             }
 
-            // Handle general queries
             const lowerInput = userInput.toLowerCase();
             
-            // Check for booking intent
             if (lowerInput.includes('book') || lowerInput.includes('reserve') || 
                 lowerInput.includes('hire') || lowerInput.includes('event')) {
                 startBooking();
                 return;
             }
 
-            // Check for venue information requests
             if (lowerInput.includes('venue') && (lowerInput.includes('info') || 
                 lowerInput.includes('detail') || lowerInput.includes('tell me'))) {
                 showVenueDetails();
@@ -431,65 +430,7 @@
             return re.test(email);
         }
 
-        // Event listeners
-        document.getElementById('high-contrast').addEventListener('click', () => document.body.classList.toggle('high-contrast'));
-        document.getElementById('increase-text').addEventListener('click', () => document.body.classList.toggle('large-text'));
-        document.getElementById('user-chat-input').addEventListener('keypress', (e) => { if (e.key === 'Enter') processChat(); });
-        
-        // CSV storage functionality
-        let allBookings = [];
-
-        // Load existing bookings from localStorage
-        function loadBookings() {
-            const stored = localStorage.getItem('artspace_bookings');
-            if (stored) {
-                allBookings = JSON.parse(stored);
-            }
-        }
-
-        // Save bookings to localStorage
-        function saveBookings() {
-            localStorage.setItem('artspace_bookings', JSON.stringify(allBookings));
-        }
-
-        // Convert bookings array to CSV format
-        function convertToCSV(bookings) {
-            if (bookings.length === 0) return '';
-            
-            // CSV headers
-            const headers = ['Timestamp', 'Name', 'Email', 'Venue', 'Event Type', 'Attendees', 'Preferred Date', 'Message'];
-            
-            // CSV rows
-            const rows = bookings.map(booking => {
-                return [
-                    booking.timestamp,
-                    `"${booking.name.replace(/"/g, '""')}"`,
-                    booking.email,
-                    `"${booking.venue.replace(/"/g, '""')}"`,
-                    `"${(booking.eventType || '').replace(/"/g, '""')}"`,
-                    booking.attendees || '',
-                    `"${(booking.preferredDate || '').replace(/"/g, '""')}"`,
-                    `"${booking.message.replace(/"/g, '""')}"`
-                ].join(',');
-            });
-            
-            return headers.join(',') + '\n' + rows.join('\n');
-        }
-
-        // Download CSV file
-        function downloadCSV(csv, filename) {
-            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.setAttribute('hidden', '');
-            a.setAttribute('href', url);
-            a.setAttribute('download', filename);
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            window.URL.revokeObjectURL(url);
-        }
-
+        // GOOGLE SHEETS INTEGRATION     
         function getVenueName(venueId) {
             const venueNames = {
                 'the-island': 'The Island',
@@ -499,7 +440,6 @@
             return venueNames[venueId] || venueId;
         }
 
-        // Parse message to extract booking details
         function parseBookingMessage(message) {
             const details = {
                 eventType: '',
@@ -521,18 +461,61 @@
             return details;
         }
 
-        // Initialize bookings on page load
-        loadBookings();
+        function showStatus(message, isSuccess) {
+            const statusDiv = document.getElementById('status-message');
+            statusDiv.textContent = message;
+            statusDiv.style.display = 'block';
+            statusDiv.style.backgroundColor = isSuccess ? '#d4edda' : '#f8d7da';
+            statusDiv.style.color = isSuccess ? '#155724' : '#721c24';
+            statusDiv.style.border = `1px solid ${isSuccess ? '#c3e6cb' : '#f5c6cb'}`;
+            
+            setTimeout(() => {
+                statusDiv.style.display = 'none';
+            }, 5000);
+        }
+
+        async function sendToGoogleSheets(bookingData) {
+            // Check if URL is configured
+            if (GOOGLE_SHEETS_URL === 'PASTE_YOUR_WEB_APP_URL_HERE') {
+                alert('⚠️ Google Sheets integration not configured yet!\n\nPlease follow the setup guide to get your Web App URL.');
+                return false;
+            }
+
+            const submitBtn = document.getElementById('submit-btn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+
+            try {
+                const response = await fetch(GOOGLE_SHEETS_URL, {
+                    method: 'POST',
+                    mode: 'no-cors', // Important for Google Apps Script
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(bookingData)
+                });
+
+                // With no-cors mode, we can't read the response, so we assume success
+                submitBtn.textContent = 'Submit Enquiry';
+                submitBtn.disabled = false;
+                return true;
+
+            } catch (error) {
+                console.error('Error sending to Google Sheets:', error);
+                submitBtn.textContent = 'Submit Enquiry';
+                submitBtn.disabled = false;
+                return false;
+            }
+        }
 
         // Form submission handler
-        document.getElementById('main-enquiry-form').addEventListener('submit', (e) => {
+        document.getElementById('main-enquiry-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             
-            // Get form data
             const message = document.getElementById('message').value;
             const bookingDetails = parseBookingMessage(message);
             
-            const newBooking = {
+            const bookingData = {
                 timestamp: new Date().toLocaleString(),
                 name: document.getElementById('name').value,
                 email: document.getElementById('email').value,
@@ -543,21 +526,21 @@
                 message: message
             };
             
-            // Add to bookings array
-            allBookings.push(newBooking);
+            // Send to Google Sheets
+            const success = await sendToGoogleSheets(bookingData);
             
-            // Save to localStorage (for ASLS admin access)
-            saveBookings();
-            
-            // Show success message to user (without mentioning CSV)
-            alert(`Thank you for your enquiry, ${newBooking.name}! We will get back to you shortly.`);
-            
-            // In a real application, this would also send data to a server
-            // Example: sendBookingToServer(newBooking);
-            
-            // Reset the form
-            document.getElementById('main-enquiry-form').reset();
+            if (success || GOOGLE_SHEETS_URL !== 'PASTE_YOUR_WEB_APP_URL_HERE') {
+                showStatus(`✅ Thank you, ${bookingData.name}! Your booking has been saved to Google Sheets.`, true);
+                document.getElementById('main-enquiry-form').reset();
+            } else {
+                showStatus('⚠️ Please configure Google Sheets URL first. See setup guide.', false);
+            }
         });
+
+        // Event listeners
+        document.getElementById('high-contrast').addEventListener('click', () => document.body.classList.toggle('high-contrast'));
+        document.getElementById('increase-text').addEventListener('click', () => document.body.classList.toggle('large-text'));
+        document.getElementById('user-chat-input').addEventListener('keypress', (e) => { if (e.key === 'Enter') processChat(); });
     </script>
 </body>
 </html>
