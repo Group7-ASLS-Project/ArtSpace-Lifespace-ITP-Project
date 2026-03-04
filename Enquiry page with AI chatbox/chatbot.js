@@ -5,7 +5,7 @@
 // ============================================
 // CONFIGURATION
 // ============================================
-const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzn9SEoHm8Ckytdglo5BIcOjZxp02QaOzJd45ttUblbpSEdb9JBv8tkgAJ9qCZJRSA-1g/exec';
+const GOOGLE_SHEETS_URL = 'Make your exec link into here';
 
 // ============================================
 // KNOWLEDGE BASE
