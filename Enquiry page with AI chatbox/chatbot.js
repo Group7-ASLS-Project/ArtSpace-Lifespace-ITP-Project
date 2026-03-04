@@ -3,7 +3,7 @@
 // ============================================
 
 // ============================================
-// CONFIGURATION
+// CONFIGURATION Please follow the guide to get the link
 // ============================================
 const GOOGLE_SHEETS_URL = 'Make your exec link into here';
 
