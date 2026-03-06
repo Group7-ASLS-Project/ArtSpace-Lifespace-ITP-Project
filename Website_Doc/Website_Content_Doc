@@ -1,0 +1,41 @@
+IT Practice: Artspace Lifespace Website Content
+
+Home:
+Main page, logo of artspace lifespace on the top left of the page, at the top of the page have a menu bar with all the links to the other pages (Venues, Events, Community, Enquire, About) and have each button on the other pages to, except on the menu where there should not be a ‘menu’ button.
+Background should be white, with the header light grey and the footer yellow, use CSS grid to separate these sections or use ‘<div>’ with different id’s to change the colour.
+In the middle of the page there could be a slideshow of different pictures of art produced at the different venues with the name of the artist if it is known, the name of the venue and the date it was taken. On top of this slideshow there should be images of the venues which lead to the ‘venues’ section.
+The footer should include the opening times, contact details (email, phone number), social media, charity number (1168150)
+The chatbot should be at the bottom right of the page
+
+Venues:
+Logo of Artspace lifespace at the top left of the page, with the menu bar with buttons to the other pages, background colour should be white with the header grey and the footer yellow.
+Title in <h2> ‘Venues’ then below add a photo of the venues in a list order with a logo, name, description, location, contact information and the spaces that can be hired
+
+Events:
+Logo of Artspace Lifespace at the top left of the page, with the menu bar with buttons to the other pages, background colour should be white with the header grey and the footer yellow.
+Title in <h2> ‘Events’ then below have a list with the events they have; name of the event, date, time, location, description and price 
+Add a button to add events where you add the name, date, time, location, description and price of the event
+
+
+
+
+Community:
+Logo of Artspace Lifespace at the top left of the page, with the menu bar with buttons to the other pages, background colour should be white with the header grey and the footer yellow.
+Title in <h2>’Our Community’ then below have a list of the artists along with a photo of themselves or a photo of their work, with their name, venue they work at and a description 
+
+
+Enquire:
+Logo of Artspace Lifespace at the top left of the page, with the menu bar with buttons to the other pages, background colour should be white with the header grey and the footer yellow.
+Title in <h2> ‘Enquire’ (Wai-So asked to keep this one as it is because he is working on it)
+
+About:
+Logo of Artspace Lifespace at the top left of the page, with the menu bar with button to the other pages, background colour should be white with the header grey and the footer yellow.
+Title in <h2> ‘About Artspace Lifespace’, 
+
+What artspace lifespace does, what they offer, what their mission is, 
+
+
+
+Accessibility buttons:
+Make text size button a drop-down list with different sizes
+High contrast button has to change all the text to white if the background changes to black
