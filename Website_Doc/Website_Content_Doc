@@ -16,13 +16,9 @@ Logo of Artspace Lifespace at the top left of the page, with the menu bar with b
 Title in <h2> ‘Events’ then below have a list with the events they have; name of the event, date, time, location, description and price 
 Add a button to add events where you add the name, date, time, location, description and price of the event
 
-
-
-
 Community:
 Logo of Artspace Lifespace at the top left of the page, with the menu bar with buttons to the other pages, background colour should be white with the header grey and the footer yellow.
 Title in <h2>’Our Community’ then below have a list of the artists along with a photo of themselves or a photo of their work, with their name, venue they work at and a description 
-
 
 Enquire:
 Logo of Artspace Lifespace at the top left of the page, with the menu bar with buttons to the other pages, background colour should be white with the header grey and the footer yellow.
@@ -30,11 +26,7 @@ Title in <h2> ‘Enquire’ (Wai-So asked to keep this one as it is because he i
 
 About:
 Logo of Artspace Lifespace at the top left of the page, with the menu bar with button to the other pages, background colour should be white with the header grey and the footer yellow.
-Title in <h2> ‘About Artspace Lifespace’, 
-
-What artspace lifespace does, what they offer, what their mission is, 
-
-
+Title in <h2> ‘About Artspace Lifespace’, below add a description on what they do, what they offer, what spaces they offer(venues, hire spaces), button to allow people to donate
 
 Accessibility buttons:
 Make text size button a drop-down list with different sizes
