@@ -1,39 +1,42 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ArtSpace LifeSpace</title>
+<title>ArtSpace LifeSpace | Community</title>
 
 <style>
 :root{
-  --primary: #d62f63;           /* Island pink */
-  --primary-dark: #b91c4f;
-  --text: #1a1a1a;
-  --muted: #666;
-  --bg: #f4f4f4;
-  --card: #ffffff;
-  --border: #e2e2e2;
-  --yellow: #f2d21b;
+  --primary:#d62f63;
+  --primary-dark:#b91c4f;
+  --text:#1a1a1a;
+  --muted:#666;
+  --bg:#f4f4f4;
+  --card:#ffffff;
+  --border:#e2e2e2;
+  --yellow:#f2d21b;
+  --gold:#ffe55c;
 }
 
-* { box-sizing: border-box; }
+*{box-sizing:border-box;}
 
 body{
   margin:0;
-  font-family: "Segoe UI", Arial, sans-serif;
-  background: var(--bg);
-  color: var(--text);
+  font-family:"Segoe UI", Arial, sans-serif;
+  background:var(--bg);
+  color:var(--text);
   line-height:1.6;
-  transition: all 0.3s ease;
+  transition:all 0.3s ease;
+  background-image:url('Pictures/Sparks.jpg');
+  background-position:center;
+  background-size:cover;
+  background-attachment:fixed;
 }
 
 .container{
   max-width:1100px;
   margin:0 auto;
-  padding:5px;
+  padding:8px;
 }
 
 /* Accessibility Banner */
@@ -42,7 +45,7 @@ body{
   border-bottom:3px solid var(--primary);
   text-align:center;
   padding:12px;
-  color: #e7d213;
+  color:var(--gold);
 }
 
 .toggle-buttons{
@@ -68,7 +71,7 @@ button:hover{
 header{
   background:#fff;
   border-bottom:1px solid var(--border);
-  padding:0px 0;
+  padding:0;
 }
 
 .header-inner{
@@ -82,7 +85,14 @@ header{
   font-size:1.4rem;
   font-weight:700;
   letter-spacing:1px;
-   ;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.logo img{
+  max-height:54px;
+  width:auto;
 }
 
 nav ul{
@@ -105,96 +115,143 @@ nav a:hover{
 
 /* Hero Section */
 .hero{
-  background:#fff;
-  padding:10px 20px;
-  text-align:center;
-  border-radius:12px;
-  margin:30px 0;
-  box-shadow:0 8px 20px rgba(0,0,0,0.05);
+  background:rgba(231,16,116,0.76);
+  padding:24px 26px;
+  border-radius:16px;
+  margin:24px 0;
+  box-shadow:0 8px 20px rgba(0,0,0,0.08);
+  color:var(--gold);
+  backdrop-filter:blur(4px);
 }
+
 .hero2{
-  
   padding:10px 20px;
   text-align:center;
   margin:30px 0;
   box-shadow:0 8px 20px rgba(0,0,0,0.05);
-  background-image: url('Pictures/LifespaceTotal.jpg');background-position: center;
+  background-image:linear-gradient(rgba(214,47,99,0.15), rgba(214,47,99,0.15)), url('Pictures/LifespaceTotal.jpg');
+  background-position:center;
+  background-size:cover;
+  border-radius:16px;
 }
-.hero h1{
-  margin:0;
-  font-size:2rem;
+
+.hero h1,
+.hero h2,
+.hero h3{
+  margin-top:0;
+  text-align:center;
 }
 
 .hero p{
-  color:var(--muted);
-  max-width:700px;
+  color:var(--gold);
+  max-width:900px;
   margin:15px auto 0;
 }
 
-/* Venues */
-.venues{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:20px;
-  margin-bottom:40px;
+/* Infinite colour flow gallery */
+.gallery-flow{
+  position:relative;
+  overflow:hidden;
+  border-radius:18px;
+  min-height:280px;
+  margin:26px 0;
+  box-shadow:0 10px 24px rgba(0,0,0,0.12);
+  isolation:isolate;
 }
 
-.venue{
-  background:var(--card);
-  padding:25px;
-  border-radius:12px;
-  box-shadow:0 6px 18px rgba(0,0,0,0.05);
-  border:1px solid var(--border);
+.gallery-flow::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:url('Pictures/LifespaceTotal.jpg');
+  background-size:cover;
+  background-position:center;
+  transform:scale(1.03);
+  z-index:-3;
+}
+
+.gallery-flow::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(120deg,
+    rgba(214,47,99,0.38),
+    rgba(242,210,27,0.28),
+    rgba(255,120,180,0.32),
+    rgba(255,227,102,0.24),
+    rgba(214,47,99,0.38));
+  background-size:300% 300%;
+  animation:colourFlow 10s ease infinite;
+  mix-blend-mode:screen;
+  z-index:-2;
+}
+
+.gallery-flow .gallery-content{
+  padding:34px 28px;
+  background:rgba(74,0,38,0.28);
+  min-height:280px;
   display:flex;
   flex-direction:column;
-  justify-content:space-between;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  color:#fff7b0;
 }
 
-.venue h3{
-  margin-top:0;
+@keyframes colourFlow{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
 }
 
-.venue p{
-  color:var(--muted);
+/* Bullet points */
+.offer-list,
+.values-list,
+.community-list,
+.disciplines-list{
+  padding-left:0;
+  margin:18px 0;
+  list-style:none;
 }
 
-/* Enquiry Form */
-.enquiry-form{
-  background:var(--card);
-  padding:30px;
+.offer-list li,
+.values-list li,
+.community-list li,
+.disciplines-list li{
+  position:relative;
+  padding:12px 14px 12px 48px;
+  margin-bottom:12px;
   border-radius:12px;
-  box-shadow:0 6px 18px rgba(0,0,0,0.05);
-  border:1px solid var(--border);
+  background:rgba(255,255,255,0.08);
+  text-align:left;
 }
 
-.enquiry-form h2{
-  margin-top:0;
+.offer-list li::before,
+.values-list li::before,
+.community-list li::before,
+.disciplines-list li::before{
+  content:"•";
+  position:absolute;
+  left:18px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:1.6rem;
+  color:#fff08d;
+  line-height:1;
 }
 
-form{
-  display:grid;
-  gap:15px;
+.quote-box{
+  margin:18px 0;
+  padding:18px;
+  border-left:4px solid #fff08d;
+  background:rgba(255,255,255,0.08);
+  border-radius:10px;
 }
 
-label{
-  font-weight:600;
-}
-
-input, select, textarea{
-  padding:12px;
-  border-radius:8px;
-  border:1px solid var(--border);
-  font-size:1rem;
-}
-
-input:focus, select:focus, textarea:focus{
-  outline:none;
-  border-color:var(--primary);
-  box-shadow:0 0 0 3px rgba(214,47,99,0.2);
-}
-
-textarea{
-  resize:vertical;
+.section-title{
+  margin-top:30px;
+  margin-bottom:10px;
+  font-size:1.5rem;
 }
 
 /* Chatbot */
@@ -231,17 +288,26 @@ footer{
 .high-contrast{
   background:#000;
   color:#fff;
+  background-image:none;
 }
 
-.high-contrast .venue,
-.high-contrast .enquiry-form,
-.high-contrast .hero{
+.high-contrast .hero,
+.high-contrast .gallery-flow .gallery-content,
+.high-contrast .offer-list li,
+.high-contrast .values-list li,
+.high-contrast .community-list li,
+.high-contrast .disciplines-list li{
   background:#000;
   border:1px solid #fff;
+  color:#fff;
+}
+
+.high-contrast .gallery-flow::after{
+  display:none;
 }
 
 .large-text{
-  font-size:1.2rem;
+  font-size:1.15rem;
 }
 
 @media(max-width:768px){
@@ -249,139 +315,84 @@ footer{
     flex-direction:column;
     text-align:center;
   }
+
+  .gallery-flow .gallery-content{
+    padding:24px 18px;
+  }
 }
 </style>
 </head>
 
-<body style="background-image: url('Pictures/Sparks.jpg'); background-position: center;">
+<body>
 
 <div class="hero2">
-<div class="accessibility-banner">
-  <button disabled style="pointer-events: none;color: #e7d213;" >Need help? Use the chatbot or jump to the enquiry form.</button>
-  <div class="toggle-buttons">
-    <button style = "color: #e7d213;" id="increase-text">Increase Text Size</button>
-    <button style = "color: #e7d213;" id="high-contrast">High Contrast Mode</button>
+  <div class="accessibility-banner">
+    <button disabled style="pointer-events:none;color:#e7d213;">Need help? Use the chatbot or jump to the enquiry form.</button>
+    <div class="toggle-buttons">
+      <button style="color:#e7d213;" id="increase-text">Increase Text Size</button>
+      <button style="color:#e7d213;" id="high-contrast">High Contrast Mode</button>
+    </div>
   </div>
-</div>
 
-<header style="background-color: rgba(231, 16, 116, 0.9);color:#e7d213;">
-  <div class="container header-inner" >
-    <div class="logo" ><img src="LifespaceLogo.PNG">ARTSPACE LIFESPACE</div>
-    <nav >
-      <ul >
-        <li><a style ="color:#e7d213;" href="index.html">Home</a></li>
-        <li><a style ="color:#e7d213;" href="Venues.html">Venues</a></li>
-        <li><a style ="color:#e7d213;" href="Events.html">Events</a></li>
-        <li><a style ="color:#e7d213;" href="#">Community</a></li>
-        <li><a style ="color:#e7d213;" href="Enquire.html">Enquire</a></li>
-      </ul>
-    </nav>
-  </div>
-  
-</header>
+  <header style="background-color:rgba(231, 16, 116, 0.9);color:#e7d213;">
+    <div class="container header-inner">
+      <div class="logo"><img src="LifespaceLogo.PNG" alt="ArtSpace LifeSpace logo">ARTSPACE LIFESPACE</div>
+      <nav>
+        <ul>
+          <li><a style="color:#e7d213;" href="index.html">Home</a></li>
+          <li><a style="color:#e7d213;" href="Venues.html">Venues</a></li>
+          <li><a style="color:#e7d213;" href="Events.html">Events</a></li>
+          <li><a style="color:#e7d213;" href="#">Community</a></li>
+          <li><a style="color:#e7d213;" href="Enquire.html">Enquire</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 </div>
 
 <div class="container">
 
-<section class="hero" style ="background-color: rgba(231, 16, 116, 0.7) ; color:#e7d213;">
-  <h1>About us & Our community</h1>
-</section>
-<section class="hero" style=" background-color: rgba(231, 16, 116, 0.7) ; color:#e7d213;">
-  <h2>What We Offer:</h2>
+  <section class="hero">
+    <h1>About Us &amp; Our Community</h1>
+    <p>Providing access, space, logistics and support for a vibrant creative community in Bristol and beyond.</p>
+  </section>
 
-<ul >
-        <li>Affordable artist and music studios and creative workshop space</li>
-        <li>Artist residency program supporting emerging talent</li>
-        <li>Community arts programs working with local partners</li>
-        <li>Gallery exhibition space</li>
-        <li>Training Space for Circus and Dance</li>
-        <li>Venue hire for events, exhibitions and dance</li>
-        <li>onsultancy and Creative Solutions to support both meanwhile and longer term development with community and creativity at its heart.</li>
-      </ul>
+  <section class="gallery-flow" aria-label="Art gallery colour flow showcase">
+    <div class="gallery-content">
+      <h2>Creative Spaces with Infinite Colour Flow</h2>
+      <p>Our gallery imagery now has a continuous animated colour wash to make the page feel more alive, artistic and memorable.</p>
+    </div>
+  </section>
 
+  <section class="hero">
+    <h2>What We Offer</h2>
+    <ul class="offer-list">
+      <li>Affordable artist and music studios and creative workshop space</li>
+      <li>Artist residency programme supporting emerging talent</li>
+      <li>Community arts programmes working with local partners</li>
+      <li>Gallery exhibition space</li>
+      <li>Training space for circus and dance</li>
+      <li>Venue hire for events, exhibitions and dance</li>
+      <li>Consultancy and creative solutions to support both meanwhile and longer-term development with community and creativity at its heart</li>
+    </ul>
+  </section>
 
-
-
-
-
-
-Our Mission
-Providing Access, Space, Logistics and Support for a vibrant creative community in Bristol and beyond. 
-
-Artspace are Creative Placemakers, curating and caring for a diverse range of spaces to create welcoming places that reflect the community’s identity and values, where artists can create, collaborate, and present their work. Our organisation purposes are to promote art for the benefit of the public by the establishment and maintenance of facilities for artists from a variety of artistic practices to create works, to collaborate, and to present and perform those works for the public.
-
-Our Values
-Responsive: Actively addressing community needs for buildings and places, involving stakeholders in placemaking decisions.
-Activist: Independent and grassroots, embracing DIY delivery models. We champion socially engaged art that fosters dialogue and empowers communities.
-Flexible: Providing space to experiment and pursue innovative art through our Artspace Resispace programme.
-Trusted: Building relationships with artists, communities and property owners to develop shared solutions for spaces.
-Enabling: Seeing and realising potential others may not, acting as a catalyst for community development.
-Responsible: Reliable guardians of spaces, protecting and celebrating social and cultural heritage that might otherwise be lost.
-Supportive: Fostering resilient environments, helping communities take ownership of regeneration and harnessing local skills and capabilities.
-Cultural Community Spaces
-Working with communities and creatives is at the heart of what we do. Each of the buildings we take on responds differently to local relevance and are designed in respect and response to the cultural and physical context of the different sites. Without people, the buildings we operate are just bricks and mortar. Our creative communties consist of artists working in:
-
-2D Art Painting, Printmaking, Illustration
-3D Art Sculpture, Installation & Public Art
-Advocacy
-Furniture Making Bespoke and Upcycling
-Ceramics / Glassmaking
-Creative Writing and Poetry
-Fashion / Textiles / Millinery
-Jewellery Making and Repair
-Music & Sound Recording
-New Media Arts Digital Art, Film & Video
-Photography
-Sustainable Education & Retail
-We work on both a meanwhile basis and longer-term projects that support our mission and vision. We are funded through both earned income and grant income and our aim is for each venue we manage to be self-sustainable whilst remaining affordable, creative and inclusive.
-
-“The Island has been an amazingly supportive place to nourish my creative practise. As an emerging artist from a very niche and Japanese textile art form, the affordable rents provided me with the space I needed to grow. My work is now gaining international recognition – it was thanks to Kathryn who in 2020 pointed out a competition to me, which I entered and my work was subsequently hung in a Japanese museum of Art and Design. That was a launchpad for all that has followed. 
-
-Rhyannan Hall, Studio Holder at The Island
-Artspace Lifespace is part of the Bristol Culture Network, the Mycelial Network of Community Asset Developers and a member of Diverse Artists Network. In 2025 we became one of five Community Led High Street Innovators nationally to help develop the work we already do to support other creatives to take on their own creative spaces.
-
-We were given expert advice and guidance on an extremely complex lease that we have been negotiating for some time. Being able to receive feedback from someone who understood the specific context of the Bristol Arts Sector as well as the legal implications of the documents that we have been working on was incredibly helpful and we are extremely thankful for the support.
-
-IMPERMANENCE
-Our Vision is RIPER. To revitalise neglected spaces, inspire innovation, promote inclusivity, encourage artistic talent and to set down roots. Explore the history of Artspace Lifespace and our Projects in Bristol and Beyond.
-
-Ready to Make a Difference? Donate to Artspace Lifespace
-We believe everyone is creative, and people need places to explore their creativity and connect with others. When you donate to ArtSpace LifeSpace, you’re not just funding a charity – you’re investing in Bristol’s creative future. We give away £30,000 per annum in space and support to artists through our Artists Residency Programme annually. It costs £7000 per annum to host our annual open studios at The Island. Neither of these programmes are funded. Your donation makes these programmes possible.</h3>
-      
+  <section class="hero">
+    <h2 class="section-title">Our Mission</h2>
   
-</section>
-
-
-
-
-
-
-</div>
-
-<div class="chatbot" onclick="alert('Chatbot: How can I help today?')" aria-label="Open chatbot">💬</div>
-
-<footer>
-  Office open weekdays 10–4pm | 0117 3763 457 | info@artspacelifespace.org
-</footer>
-
-<script>
-document.getElementById('high-contrast').addEventListener('click', function(){
-  document.body.classList.toggle('high-contrast');
-});
-
-document.getElementById('increase-text').addEventListener('click', function(){
-  document.body.classList.toggle('large-text');
-});
-
-function scrollToForm(){
-  document.getElementById('enquire').scrollIntoView({behavior:'smooth'});
-}
-
-document.querySelector('form').addEventListener('submit', function(e){
-  e.preventDefault();
-  alert('Enquiry submitted successfully!');
-});
-</script>
-
-</body>
-</html>
+    <p>
+      Artspace Lifespace are creative placemakers, curating and caring for a diverse range of spaces to create welcoming places that reflect the community’s identity and values, where artists can create, collaborate and present their work.
+    </p>
+  
+    <p>
+      Our organisation exists to promote art for the benefit of the public by establishing and maintaining facilities for artists from a variety of artistic practices to create work, collaborate, and present and perform that work for the public.
+    </p>
+  
+    <ul class="community-list">
+      <li>Provide access to affordable, inclusive creative spaces</li>
+      <li>Support artists to create, collaborate and present their work</li>
+      <li>Transform underused buildings into vibrant cultural places</li>
+      <li>Promote art for the benefit of the public</li>
+      <li>Strengthen communities through creativity, culture and placemaking</li>
+    </ul>
+  </section>
