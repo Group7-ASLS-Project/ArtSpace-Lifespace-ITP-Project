@@ -64,9 +64,10 @@ const venueDetails = {
 // ============================================
 let userName = "";
 let userEmail = "";
-let bookingState = "idle"; 
+let bookingState = "idle";
 let tempBookingData = {};
 let currentStep = 0;
+let chatGreeted = false; // tracks whether the greeting has been shown
 
 // ============================================
 // CHATBOT FUNCTIONS
@@ -78,6 +79,16 @@ function toggleChat() {
         win.style.display = 'none';
     } else {
         win.style.display = 'flex';
+        // Only greet once per page load
+        if (!chatGreeted) {
+            chatGreeted = true;
+            setTimeout(() => {
+                addMessage("👋 Welcome to ArtSpace LifeSpace!", false);
+                setTimeout(() => {
+                    addMessage("Before we get started, what's your name?", false);
+                }, 500);
+            }, 200);
+        }
     }
 }
 
@@ -238,36 +249,48 @@ function showBookingSummary() {
 function confirmBooking() {
     addMessage("Confirm & Submit", true);
     
-    // Populate the form
-    document.getElementById('name').value = tempBookingData.name;
-    document.getElementById('email').value = tempBookingData.email;
-    document.getElementById('building').value = tempBookingData.building;
-    
-    let formMessage = `Event Type: ${tempBookingData.eventType}\n`;
-    formMessage += `Expected Attendees: ${tempBookingData.attendees}\n`;
-    formMessage += `Preferred Date: ${tempBookingData.date}\n`;
-    if (tempBookingData.message !== 'none') {
-        formMessage += `Additional Notes: ${tempBookingData.message}`;
+    // Populate the form (only on Enquire.html where the form exists)
+    const nameField = document.getElementById('name');
+    const emailField = document.getElementById('email');
+    const buildingField = document.getElementById('building');
+    const messageField = document.getElementById('message');
+
+    if (nameField) nameField.value = tempBookingData.name;
+    if (emailField) emailField.value = tempBookingData.email;
+    if (buildingField) buildingField.value = tempBookingData.building;
+
+    if (messageField) {
+        let formMessage = `Event Type: ${tempBookingData.eventType}\n`;
+        formMessage += `Expected Attendees: ${tempBookingData.attendees}\n`;
+        formMessage += `Preferred Date: ${tempBookingData.date}\n`;
+        if (tempBookingData.message !== 'none') {
+            formMessage += `Additional Notes: ${tempBookingData.message}`;
+        }
+        messageField.value = formMessage;
     }
-    document.getElementById('message').value = formMessage;
-    
-    addMessage("✅ Perfect! I've filled out the booking form for you. Please review and submit it below.", false);
-    addMessage("The page will scroll to the form in a moment...", false);
+
+    if (nameField) {
+        addMessage("✅ Perfect! I've filled out the booking form for you. Please review and submit it below.", false);
+        addMessage("The page will scroll to the form in a moment...", false);
+        setTimeout(() => {
+            const enquireSection = document.getElementById('enquire');
+            if (enquireSection) {
+                enquireSection.scrollIntoView({ behavior: 'smooth' });
+                enquireSection.style.border = '3px solid #4CAF50';
+                setTimeout(() => { enquireSection.style.border = ''; }, 2000);
+            }
+        }, 1500);
+    } else {
+        // On other pages, redirect to Enquire.html with data in sessionStorage
+        sessionStorage.setItem('pendingBooking', JSON.stringify(tempBookingData));
+        addMessage("✅ Great! Taking you to the enquiry form now...", false);
+        setTimeout(() => { window.location.href = 'Enquire.html'; }, 1200);
+    }
     
     // Reset booking state
     bookingState = "idle";
     tempBookingData = {};
     currentStep = 0;
-    
-    // Scroll to form
-    setTimeout(() => {
-        document.getElementById('enquire').scrollIntoView({ behavior: 'smooth' });
-        const form = document.getElementById('enquire');
-        form.style.border = '3px solid #4CAF50';
-        setTimeout(() => {
-            form.style.border = '';
-        }, 2000);
-    }, 1500);
 }
 
 function cancelBooking() {
@@ -287,10 +310,11 @@ function processChat() {
     addMessage(userInput, true);
     inputField.value = "";
 
+    // Step 1: Collect name on first message
     if (!userName) {
         userName = userInput;
         addMessage(`Nice to meet you, ${userName}! How can I assist you today?`, false);
-        showOptions(); 
+        setTimeout(() => showOptions(), 400);
         return;
     }
 
@@ -381,12 +405,7 @@ function getVenueName(venueId) {
 }
 
 function parseBookingMessage(message) {
-    const details = {
-        eventType: '',
-        attendees: '',
-        preferredDate: ''
-    };
-    
+    const details = { eventType: '', attendees: '', preferredDate: '' };
     const lines = message.split('\n');
     lines.forEach(line => {
         if (line.startsWith('Event Type:')) {
@@ -397,52 +416,41 @@ function parseBookingMessage(message) {
             details.preferredDate = line.replace('Preferred Date:', '').trim();
         }
     });
-    
     return details;
 }
 
 function showStatus(message, isSuccess) {
     const statusDiv = document.getElementById('status-message');
+    if (!statusDiv) return;
     statusDiv.textContent = message;
     statusDiv.style.display = 'block';
     statusDiv.style.backgroundColor = isSuccess ? '#d4edda' : '#f8d7da';
     statusDiv.style.color = isSuccess ? '#155724' : '#721c24';
     statusDiv.style.border = `1px solid ${isSuccess ? '#c3e6cb' : '#f5c6cb'}`;
-    
-    setTimeout(() => {
-        statusDiv.style.display = 'none';
-    }, 5000);
+    setTimeout(() => { statusDiv.style.display = 'none'; }, 5000);
 }
 
 async function sendToGoogleSheets(bookingData) {
-    // Check if URL is configured
-    if (GOOGLE_SHEETS_URL === 'PASTE_YOUR_WEB_APP_URL_HERE') {
+    if (GOOGLE_SHEETS_URL === 'Make your exec link into here') {
         alert('⚠️ Google Sheets integration not configured yet!\n\nPlease follow the setup guide to get your Web App URL.');
         return false;
     }
 
     const submitBtn = document.getElementById('submit-btn');
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Sending...';
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending...'; }
 
     try {
-        const response = await fetch(GOOGLE_SHEETS_URL, {
+        await fetch(GOOGLE_SHEETS_URL, {
             method: 'POST',
             mode: 'no-cors',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(bookingData)
         });
-
-        submitBtn.textContent = 'Submit Enquiry';
-        submitBtn.disabled = false;
+        if (submitBtn) { submitBtn.textContent = 'Submit Enquiry'; submitBtn.disabled = false; }
         return true;
-
     } catch (error) {
         console.error('Error sending to Google Sheets:', error);
-        submitBtn.textContent = 'Submit Enquiry';
-        submitBtn.disabled = false;
+        if (submitBtn) { submitBtn.textContent = 'Submit Enquiry'; submitBtn.disabled = false; }
         return false;
     }
 }
@@ -451,17 +459,41 @@ async function sendToGoogleSheets(bookingData) {
 // INITIALIZATION
 // ============================================
 
-// Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
+
+    // Pre-fill form if redirected from another page via chatbot
+    const pendingBooking = sessionStorage.getItem('pendingBooking');
+    if (pendingBooking) {
+        try {
+            const data = JSON.parse(pendingBooking);
+            sessionStorage.removeItem('pendingBooking');
+            const nameField = document.getElementById('name');
+            const emailField = document.getElementById('email');
+            const buildingField = document.getElementById('building');
+            const messageField = document.getElementById('message');
+            if (nameField) nameField.value = data.name || '';
+            if (emailField) emailField.value = data.email || '';
+            if (buildingField) buildingField.value = data.building || '';
+            if (messageField) {
+                let msg = '';
+                if (data.eventType) msg += `Event Type: ${data.eventType}\n`;
+                if (data.attendees) msg += `Expected Attendees: ${data.attendees}\n`;
+                if (data.date) msg += `Preferred Date: ${data.date}\n`;
+                if (data.message && data.message !== 'none') msg += `Additional Notes: ${data.message}`;
+                messageField.value = msg;
+            }
+            // Also restore name into chatbot state
+            if (data.name) userName = data.name;
+        } catch(e) { console.warn('Could not restore pending booking', e); }
+    }
+
     // Form submission handler
     const form = document.getElementById('main-enquiry-form');
     if (form) {
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            
             const message = document.getElementById('message').value;
             const bookingDetails = parseBookingMessage(message);
-            
             const bookingData = {
                 timestamp: new Date().toLocaleString(),
                 name: document.getElementById('name').value,
@@ -472,15 +504,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 preferredDate: bookingDetails.preferredDate,
                 message: message
             };
-            
-            // Send to Google Sheets
             const success = await sendToGoogleSheets(bookingData);
-            
-            if (success || GOOGLE_SHEETS_URL !== 'PASTE_YOUR_WEB_APP_URL_HERE') {
-                showStatus(`✅ Thank you, ${bookingData.name}! Your booking has been saved to Google Sheets.`, true);
+            if (success || GOOGLE_SHEETS_URL !== 'Make your exec link into here') {
+                showStatus(`✅ Thank you, ${bookingData.name}! Your booking enquiry has been submitted.`, true);
                 document.getElementById('main-enquiry-form').reset();
             } else {
-                showStatus('⚠️ Please configure Google Sheets URL first. See setup guide.', false);
+                showStatus('⚠️ Please configure the Google Sheets URL first. See setup guide.', false);
             }
         });
     }
@@ -488,8 +517,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Chat input enter key
     const chatInput = document.getElementById('user-chat-input');
     if (chatInput) {
-        chatInput.addEventListener('keypress', (e) => { 
-            if (e.key === 'Enter') processChat(); 
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') processChat();
         });
     }
 });
