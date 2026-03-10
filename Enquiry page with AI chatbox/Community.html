@@ -22,7 +22,7 @@
 
 body{
   margin:0;
-  font-family:"Segoe UI", Arial, sans-serif;
+  font-family:"Segoe UI",Arial,sans-serif;
   background:var(--bg);
   color:var(--text);
   line-height:1.6;
@@ -33,13 +33,8 @@ body{
   background-attachment:fixed;
 }
 
-.container{
-  max-width:1100px;
-  margin:0 auto;
-  padding:8px;
-}
+.container{ max-width:1100px; margin:0 auto; padding:8px; }
 
-/* Accessibility Banner */
 .accessibility-banner{
   background:transparent;
   border-bottom:3px solid var(--primary);
@@ -48,9 +43,7 @@ body{
   color:var(--gold);
 }
 
-.toggle-buttons{
-  margin-top:8px;
-}
+.toggle-buttons{ margin-top:8px; }
 
 button{
   background:var(--primary);
@@ -63,11 +56,8 @@ button{
   transition:0.2s ease;
 }
 
-button:hover{
-  background:var(--primary-dark);
-}
+button:hover{ background:var(--primary-dark); }
 
-/* Header */
 header{
   background:#fff;
   border-bottom:1px solid var(--border);
@@ -90,30 +80,12 @@ header{
   gap:10px;
 }
 
-.logo img{
-  max-height:54px;
-  width:auto;
-}
+.logo img{ max-height:54px; width:auto; }
 
-nav ul{
-  list-style:none;
-  display:flex;
-  gap:20px;
-  padding:0;
-  margin:0;
-}
+nav ul{ list-style:none; display:flex; gap:20px; padding:0; margin:0; }
+nav a{ text-decoration:none; color:var(--text); font-weight:600; }
+nav a:hover{ color:var(--primary); }
 
-nav a{
-  text-decoration:none;
-  color:var(--text);
-  font-weight:600;
-}
-
-nav a:hover{
-  color:var(--primary);
-}
-
-/* Hero Section */
 .hero{
   background:rgba(231,16,116,0.76);
   padding:24px 26px;
@@ -129,24 +101,14 @@ nav a:hover{
   text-align:center;
   margin:30px 0;
   box-shadow:0 8px 20px rgba(0,0,0,0.05);
-  background-image:linear-gradient(rgba(214,47,99,0.15), rgba(214,47,99,0.15)), url('Pictures/LifespaceTotal.jpg');
+  background-image:linear-gradient(rgba(214,47,99,0.15),rgba(214,47,99,0.15)),url('Pictures/LifespaceTotal.jpg');
   background-position:center;
   background-size:cover;
   border-radius:16px;
 }
 
-.hero h1,
-.hero h2,
-.hero h3{
-  margin-top:0;
-  text-align:center;
-}
-
-.hero p{
-  color:var(--gold);
-  max-width:900px;
-  margin:15px auto 0;
-}
+.hero h1,.hero h2,.hero h3{ margin-top:0; text-align:center; }
+.hero p{ color:var(--gold); max-width:900px; margin:15px auto 0; }
 
 /* Infinite colour flow gallery */
 .gallery-flow{
@@ -175,10 +137,8 @@ nav a:hover{
   position:absolute;
   inset:0;
   background:linear-gradient(120deg,
-    rgba(214,47,99,0.38),
-    rgba(242,210,27,0.28),
-    rgba(255,120,180,0.32),
-    rgba(255,227,102,0.24),
+    rgba(214,47,99,0.38),rgba(242,210,27,0.28),
+    rgba(255,120,180,0.32),rgba(255,227,102,0.24),
     rgba(214,47,99,0.38));
   background-size:300% 300%;
   animation:colourFlow 10s ease infinite;
@@ -204,20 +164,11 @@ nav a:hover{
   100%{background-position:0% 50%;}
 }
 
-/* Bullet points */
-.offer-list,
-.values-list,
-.community-list,
-.disciplines-list{
-  padding-left:0;
-  margin:18px 0;
-  list-style:none;
+.offer-list,.values-list,.community-list,.disciplines-list{
+  padding-left:0; margin:18px 0; list-style:none;
 }
 
-.offer-list li,
-.values-list li,
-.community-list li,
-.disciplines-list li{
+.offer-list li,.values-list li,.community-list li,.disciplines-list li{
   position:relative;
   padding:12px 14px 12px 48px;
   margin-bottom:12px;
@@ -226,10 +177,7 @@ nav a:hover{
   text-align:left;
 }
 
-.offer-list li::before,
-.values-list li::before,
-.community-list li::before,
-.disciplines-list li::before{
+.offer-list li::before,.values-list li::before,.community-list li::before,.disciplines-list li::before{
   content:"•";
   position:absolute;
   left:18px;
@@ -240,21 +188,9 @@ nav a:hover{
   line-height:1;
 }
 
-.quote-box{
-  margin:18px 0;
-  padding:18px;
-  border-left:4px solid #fff08d;
-  background:rgba(255,255,255,0.08);
-  border-radius:10px;
-}
+.section-title{ margin-top:30px; margin-bottom:10px; font-size:1.5rem; }
 
-.section-title{
-  margin-top:30px;
-  margin-bottom:10px;
-  font-size:1.5rem;
-}
-
-/* Chatbot */
+/* Chatbot launcher */
 .chatbot{
   position:fixed;
   bottom:25px;
@@ -270,55 +206,101 @@ nav a:hover{
   font-size:1.6rem;
   cursor:pointer;
   box-shadow:0 10px 20px rgba(0,0,0,0.2);
+  z-index:1000;
 }
 
-.chatbot:hover{
-  background:var(--primary-dark);
+.chatbot:hover{ background:var(--primary-dark); }
+
+/* Chat Window */
+#chat-window{
+  position:fixed;
+  bottom:100px;
+  right:20px;
+  width:320px;
+  height:480px;
+  background:#e7d213;
+  border-radius:10px;
+  box-shadow:0 5px 25px rgba(0,0,0,0.2);
+  flex-direction:column;
+  overflow:hidden;
+  z-index:1001;
 }
 
-/* Footer */
-footer{
-  background:var(--yellow);
-  padding:20px;
-  text-align:center;
-  font-weight:600;
-}
-
-/* Accessibility Modes */
-.high-contrast{
-  background:#000;
+.chat-header{
+  background:#d62f63;
   color:#fff;
-  background-image:none;
+  padding:15px;
+  font-weight:bold;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
-.high-contrast .hero,
-.high-contrast .gallery-flow .gallery-content,
-.high-contrast .offer-list li,
-.high-contrast .values-list li,
-.high-contrast .community-list li,
-.high-contrast .disciplines-list li{
+#chat-box{
+  flex:1;
+  padding:15px;
+  overflow-y:auto;
+  background:#e7d213;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.chat-input-area{
+  padding:10px;
+  border-top:1px solid #000;
+  display:flex;
+  gap:5px;
+  background:#e7d213;
+}
+
+.chat-input-area input{
+  flex:1;
+  padding:8px;
+  border:1px solid #000;
+  border-radius:4px;
   background:#000;
-  border:1px solid #fff;
-  color:#fff;
+  color:#e7d213;
+  font-size:0.9em;
 }
 
-.high-contrast .gallery-flow::after{
-  display:none;
+.chat-input-area button{ padding:8px 12px; font-size:0.9em; }
+
+.message{ max-width:85%; padding:8px 12px; border-radius:15px; font-size:0.9em; }
+.bot-msg{ background:#000; color:#e7d213; align-self:flex-start; }
+.user-msg{ background:#000; color:#e71074; align-self:flex-end; }
+
+.option-button{
+  display:block;
+  width:100%;
+  background:#e71074;
+  color:#e7d213;
+  border:1px solid #e7d213;
+  padding:6px;
+  margin-top:5px;
+  border-radius:4px;
+  cursor:pointer;
+  text-align:left;
+  font-size:0.85em;
 }
 
-.large-text{
-  font-size:1.15rem;
+.option-button:hover{ background:#b91c4f; }
+
+footer{ background:var(--yellow); padding:20px; text-align:center; font-weight:600; }
+
+.high-contrast{ background:#000; color:#fff; background-image:none; }
+.high-contrast .hero,.high-contrast .gallery-flow .gallery-content,
+.high-contrast .offer-list li,.high-contrast .values-list li,
+.high-contrast .community-list li,.high-contrast .disciplines-list li{
+  background:#000; border:1px solid #fff; color:#fff;
 }
+.high-contrast .gallery-flow::after{ display:none; }
+
+.large-text{ font-size:1.15rem; }
 
 @media(max-width:768px){
-  nav ul{
-    flex-direction:column;
-    text-align:center;
-  }
-
-  .gallery-flow .gallery-content{
-    padding:24px 18px;
-  }
+  nav ul{ flex-direction:column; text-align:center; }
+  .gallery-flow .gallery-content{ padding:24px 18px; }
 }
 </style>
 </head>
@@ -334,7 +316,7 @@ footer{
     </div>
   </div>
 
-  <header style="background-color:rgba(231, 16, 116, 0.9);color:#e7d213;">
+  <header style="background-color:rgba(231,16,116,0.9);color:#e7d213;">
     <div class="container header-inner">
       <div class="logo"><img src="LifespaceLogo.PNG" alt="ArtSpace LifeSpace logo">ARTSPACE LIFESPACE</div>
       <nav>
@@ -360,7 +342,7 @@ footer{
   <section class="gallery-flow" aria-label="Art gallery colour flow showcase">
     <div class="gallery-content">
       <h2>Creative Spaces with Infinite Colour Flow</h2>
-      <p>Our gallery imagery now has a continuous animated colour wash to make the page feel more alive, artistic and memorable.</p>
+      <p>Our gallery imagery has a continuous animated colour wash to make the page feel more alive, artistic and memorable.</p>
     </div>
   </section>
 
@@ -379,15 +361,8 @@ footer{
 
   <section class="hero">
     <h2 class="section-title">Our Mission</h2>
-  
-    <p>
-      Artspace Lifespace are creative placemakers, curating and caring for a diverse range of spaces to create welcoming places that reflect the community’s identity and values, where artists can create, collaborate and present their work.
-    </p>
-  
-    <p>
-      Our organisation exists to promote art for the benefit of the public by establishing and maintaining facilities for artists from a variety of artistic practices to create work, collaborate, and present and perform that work for the public.
-    </p>
-  
+    <p>Artspace Lifespace are creative placemakers, curating and caring for a diverse range of spaces to create welcoming places that reflect the community's identity and values, where artists can create, collaborate and present their work.</p>
+    <p>Our organisation exists to promote art for the benefit of the public by establishing and maintaining facilities for artists from a variety of artistic practices to create work, collaborate, and present and perform that work for the public.</p>
     <ul class="community-list">
       <li>Provide access to affordable, inclusive creative spaces</li>
       <li>Support artists to create, collaborate and present their work</li>
@@ -396,3 +371,40 @@ footer{
       <li>Strengthen communities through creativity, culture and placemaking</li>
     </ul>
   </section>
+
+</div>
+
+<!-- Chatbot Launcher -->
+<div class="chatbot" onclick="toggleChat()" aria-label="Open chatbot">💬</div>
+
+<!-- Chat Window -->
+<div id="chat-window" style="display:none;">
+  <div class="chat-header">
+    <span>💬 ASLS Assistant</span>
+    <span onclick="toggleChat()" style="cursor:pointer;font-size:1.1rem;">✕</span>
+  </div>
+  <div id="chat-box"></div>
+  <div class="chat-input-area">
+    <input id="user-chat-input" type="text" placeholder="Type a message...">
+    <button onclick="processChat()">Send</button>
+  </div>
+</div>
+
+<footer>
+  Office open weekdays 10–4pm | 0117 3763 457 | info@artspacelifespace.org
+</footer>
+
+<script>
+document.getElementById('high-contrast').addEventListener('click', function(){
+  document.body.classList.toggle('high-contrast');
+});
+
+document.getElementById('increase-text').addEventListener('click', function(){
+  document.body.classList.toggle('large-text');
+});
+</script>
+
+<script src="chatbot.js"></script>
+
+</body>
+</html>
