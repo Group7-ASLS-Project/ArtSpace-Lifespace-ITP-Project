@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ArtSpace LifeSpace | Community</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+
+/* ── Animated gallery band — uses real Sparks photo ── */
+.gallery-band {
+  position: relative;
+  overflow: hidden;
+  min-height: 280px;
+  display: flex;
+  align-items: center;
+}
+
+.gallery-band__bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('Sparks.jpg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.45;
+}
+
+.gallery-band__wash {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg,
+    rgba(214,47,99,0.5), rgba(231,210,19,0.3),
+    rgba(214,47,99,0.6), rgba(231,210,19,0.35));
+  background-size: 300% 300%;
+  animation: colourFlow 9s ease infinite;
+  mix-blend-mode: multiply;
+}
+
+@keyframes colourFlow {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.gallery-band__content {
+  position: relative;
+  z-index: 1;
+  padding: 52px 0;
+}
+
+.gallery-band__content h2 { color: #fff; font-size: 1.9rem; margin-bottom: 10px; }
+.gallery-band__content p  { color: rgba(255,255,255,0.85); max-width: 600px; line-height: 1.7; }
+
+/* ── Pillar list ── */
+.pillar-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.pillar-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 18px;
+  background: var(--off-white);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--crimson);
+  font-size: 0.93rem;
+  line-height: 1.5;
+}
+
+.pillar-list li::before {
+  content: '✦';
+  color: var(--crimson);
+  font-size: 0.7rem;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+/* ── Two-column layout ── */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 52px;
+  align-items: start;
+}
+
+/* ── History map feature ── */
+.history-feature {
+  background: var(--black);
+  padding: 64px 0;
+}
+
+.history-feature__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.history-feature__text { color: rgba(255,255,255,0.75); }
+
+.history-feature__text h2 {
+  color: #fff;
+  font-size: 2rem;
+  margin-bottom: 16px;
+}
+
+.history-feature__text p {
+  line-height: 1.75;
+  margin-bottom: 14px;
+  font-size: 0.95rem;
+}
+
+.history-feature__text p:last-of-type { margin-bottom: 28px; }
+
+.history-feature__image {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  border: 2px solid rgba(231,210,19,0.2);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.history-feature__image:hover {
+  transform: scale(1.02);
+  box-shadow: 0 28px 72px rgba(0,0,0,0.6);
+}
+
+.history-feature__image img {
+  width: 100%;
+  display: block;
+}
+
+.history-feature__caption {
+  margin-top: 10px;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.4);
+  text-align: center;
+  font-style: italic;
+}
+
+/* ── Lightbox for map ── */
+.lightbox-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.92);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  cursor: zoom-out;
+}
+
+.lightbox-overlay.open { display: flex; }
+
+.lightbox-overlay img {
+  max-width: 100%;
+  max-height: 90vh;
+  border-radius: var(--radius-md);
+  box-shadow: 0 24px 80px rgba(0,0,0,0.8);
+  cursor: default;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+  background: none;
+  border: none;
+  line-height: 1;
+}
+
+.lightbox-close:hover { opacity: 1; }
+
+@media (max-width: 768px) {
+  .two-col { grid-template-columns: 1fr; gap: 32px; }
+  .history-feature__inner { grid-template-columns: 1fr; gap: 32px; }
+  .history-feature { padding: 48px 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="container top-bar__inner">
+    <span class="top-bar__note">Need help? Use the chatbot ↘ or visit the enquiry form</span>
+    <div class="top-bar__controls">
+      <button class="a11y-btn" id="increase-text">Aa Larger Text</button>
+      <button class="a11y-btn" id="high-contrast">◑ High Contrast</button>
+    </div>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="index.html" class="logo">
+      <img src="LifespaceLogo.PNG" alt="ArtSpace LifeSpace logo">
+      <div class="logo__text">ArtSpace LifeSpace<span>Bristol Arts Charity</span></div>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="Venues.html">Venues</a></li>
+        <li><a href="Events.html">Events</a></li>
+        <li><a href="Community.html" class="active">Community</a></li>
+        <li><a href="Enquire.html" class="btn btn--crimson" style="padding:7px 18px;font-size:0.83rem;">Enquire</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- Hero — The Island panorama as bg -->
+<section class="page-hero">
+  <div class="page-hero__bg" style="background-image:url('IslandPanorama.PNG')"></div>
+  <div class="container">
+    <div class="page-hero__content">
+      <span class="page-hero__eyebrow">About Us</span>
+      <h1>Community at the Heart of Everything We Do</h1>
+      <p>Providing access, space, logistics and support for a vibrant creative community in Bristol and beyond.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Animated colour band — Sparks photo underneath -->
+<div class="gallery-band">
+  <div class="gallery-band__bg"></div>
+  <div class="gallery-band__wash"></div>
+  <div class="container gallery-band__content">
+    <h2>Creative Spaces, Infinite Possibility</h2>
+    <p>Our venues carry a living energy — a continuous flow of artists, makers, performers and communities coming together to create something extraordinary in Bristol.</p>
+  </div>
+</div>
+
+<!-- What We Offer + Mission -->
+<section class="section" style="background:#fff;">
+  <div class="container">
+    <div class="two-col">
+
+      <div>
+        <div class="section-label"><span>What We Offer</span></div>
+        <h2 style="font-size:1.9rem;margin-bottom:16px;">How We Support the Creative Community</h2>
+        <ul class="pillar-list">
+          <li>Affordable artist and music studios and creative workshop space</li>
+          <li>Artist residency programme supporting emerging talent</li>
+          <li>Community arts programmes working with local partners</li>
+          <li>Gallery exhibition space</li>
+          <li>Training space for circus and dance</li>
+          <li>Venue hire for events, exhibitions and performances</li>
+          <li>Consultancy and creative solutions for community-centred development</li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="section-label"><span>Our Mission</span></div>
+        <h2 style="font-size:1.9rem;margin-bottom:16px;">Creative Placemakers for Bristol</h2>
+        <p style="color:var(--mid);line-height:1.75;margin-bottom:14px;">Artspace Lifespace are creative placemakers, curating and caring for a diverse range of spaces to create welcoming places that reflect the community's identity and values — where artists can create, collaborate and present their work.</p>
+        <p style="color:var(--mid);line-height:1.75;margin-bottom:24px;">Our organisation exists to promote art for the benefit of the public by establishing and maintaining facilities for artists from a variety of artistic practices to create, collaborate and present their work.</p>
+        <ul class="pillar-list">
+          <li>Provide access to affordable, inclusive creative spaces</li>
+          <li>Support artists to create, collaborate and present their work</li>
+          <li>Transform underused buildings into vibrant cultural places</li>
+          <li>Strengthen communities through creativity and culture</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- History map feature — LifespaceTotal.jpg properly showcased -->
+<section class="history-feature">
+  <div class="container history-feature__inner">
+
+    <div class="history-feature__text">
+      <div class="section-label"><span style="color:rgba(231,210,19,0.7);">Our History</span></div>
+      <h2>A Journey Through Time and Artspace</h2>
+      <p>Since 2006, Artspace Lifespace has breathed life into over a dozen forgotten buildings across Bristol — from police stations and mansions to department stores and cathedrals.</p>
+      <p>Our illustrated map traces every space we've curated: from Nine Tree Hill in 2006 to The Island, Arts Mansion, Sparks Bristol and beyond. Each site tells a story of community, creativity and transformation.</p>
+      <p>We have over 20 years of experience in the 'Meanwhile space' sector — revitalising neglected buildings so they benefit artists, communities and neighbourhoods.</p>
+      <a href="Enquire.html" class="btn btn--gold">Get Involved →</a>
+    </div>
+
+    <div>
+      <div class="history-feature__image" onclick="openLightbox()">
+        <img src="LifespaceTotal.jpg" alt="Illustrated map of all ArtSpace LifeSpace venues across Bristol history">
+      </div>
+      <p class="history-feature__caption">Click to view full map · Illustrated by ArtSpace LifeSpace, Bristol 2020</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Accessibility band -->
+<section class="section section--dark" style="padding:52px 0;">
+  <div class="container">
+    <div class="section-label"><span style="color:rgba(231,210,19,0.7);">Accessibility</span></div>
+    <h2 style="color:#fff;margin-bottom:12px;font-size:1.8rem;">Inclusive by Design</h2>
+    <p style="color:rgba(255,255,255,0.7);max-width:580px;margin-bottom:28px;line-height:1.75;">ASLS is committed to inclusivity across all our venues. Sparks Bristol is fully step-free with lift access, a quiet sensory pod, and a prayer room. Please let us know your specific needs when making an enquiry and we'll do everything we can to accommodate.</p>
+    <a href="Enquire.html" class="btn btn--gold">Get in Touch →</a>
+  </div>
+</section>
+
+<!-- Lightbox for history map -->
+<div class="lightbox-overlay" id="map-lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img src="LifespaceTotal.jpg" alt="Full ArtSpace LifeSpace venue history map" onclick="event.stopPropagation()">
+</div>
+
+<!-- Chatbot -->
+<div class="chatbot-fab" onclick="toggleChat()" aria-label="Open chatbot">💬</div>
+
+<div id="chat-window" style="display:none;">
+  <div class="chat-header">
+    <span>💬 ASLS Assistant</span>
+    <span class="chat-header__close" onclick="toggleChat()">✕</span>
+  </div>
+  <div id="chat-box"></div>
+  <div class="chat-input-area">
+    <input id="user-chat-input" type="text" placeholder="Ask me anything…">
+    <button onclick="processChat()">Send</button>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__inner">
+      <div>
+        <div class="site-footer__brand">ArtSpace LifeSpace</div>
+        <p class="site-footer__tagline">A Bristol-based charity transforming vacant spaces into vibrant creative communities since 2006. Registered Charity No: 1168150.</p>
+      </div>
+      <div class="site-footer__contact">
+        <div>Office: weekdays 10am – 4pm</div>
+        <div><a href="tel:01173763457">0117 3763 457</a></div>
+        <div><a href="mailto:info@artspacelifespace.org">info@artspacelifespace.org</a></div>
+        <div style="margin-top:8px;">
+          <a href="https://facebook.com/artspaceuk" target="_blank" rel="noopener" style="margin-right:10px;">Facebook</a>
+          <a href="https://instagram.com/artspaceuk" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+    </div>
+    <div class="site-footer__bottom">© 2025 ArtSpace LifeSpace. Registered Charity No: 1168150. c/o The Island, Nelson Street, Bristol, BS1 2BE.</div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('high-contrast').addEventListener('click', function() {
+  document.body.classList.toggle('high-contrast');
+  this.textContent = document.body.classList.contains('high-contrast') ? '◑ Standard' : '◑ High Contrast';
+});
+document.getElementById('increase-text').addEventListener('click', function() {
+  document.body.classList.toggle('large-text');
+  this.textContent = document.body.classList.contains('large-text') ? 'Aa Normal Text' : 'Aa Larger Text';
+});
+
+function openLightbox() {
+  document.getElementById('map-lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  document.getElementById('map-lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeLightbox();
+});
+</script>
+<script src="chatbot.js"></script>
+</body>
+</html>

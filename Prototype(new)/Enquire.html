@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ArtSpace LifeSpace | Enquire</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.enquiry-layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 48px;
+  align-items: start;
+  padding: 64px 0;
+}
+
+.enquiry-form-card {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+}
+
+.enquiry-form-card h2 {
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+}
+
+.enquiry-form-card .subtitle {
+  color: var(--mid);
+  font-size: 0.9rem;
+  margin-bottom: 32px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--black);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 12px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  color: var(--black);
+  background: var(--off-white);
+  transition: var(--transition);
+  outline: none;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--crimson);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(214,47,99,0.1);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 130px;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 14px;
+  background: var(--crimson);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-top: 8px;
+}
+
+.submit-btn:hover {
+  background: var(--crimson-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(214,47,99,0.35);
+}
+
+#status-message {
+  display: none;
+  padding: 14px 18px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 20px;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+/* Sidebar info */
+.enquiry-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.info-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.info-card h3 {
+  font-size: 1rem;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.info-card h3 span {
+  font-size: 1.1rem;
+}
+
+.info-card p,
+.info-card a {
+  font-size: 0.88rem;
+  color: var(--mid);
+  line-height: 1.65;
+}
+
+.info-card a {
+  color: var(--crimson);
+  font-weight: 500;
+}
+
+.info-card a:hover { text-decoration: underline; }
+
+.venue-mini {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.venue-mini-item {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 0.85rem;
+}
+
+.venue-mini-item__dot {
+  width: 8px;
+  height: 8px;
+  background: var(--crimson);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.chatbot-tip {
+  background: var(--black);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  color: rgba(255,255,255,0.8);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.chatbot-tip strong {
+  color: var(--gold);
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 900px) {
+  .enquiry-layout { grid-template-columns: 1fr; }
+  .enquiry-sidebar { order: -1; }
+  .enquiry-form-card { padding: 28px 24px; }
+}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="container top-bar__inner">
+    <span class="top-bar__note">Need help? Use the chatbot ↘ to complete this form step by step</span>
+    <div class="top-bar__controls">
+      <button class="a11y-btn" id="increase-text">Aa Larger Text</button>
+      <button class="a11y-btn" id="high-contrast">◑ High Contrast</button>
+    </div>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="index.html" class="logo">
+      <img src="LifespaceLogo.PNG" alt="ArtSpace LifeSpace logo">
+      <div class="logo__text">ArtSpace LifeSpace<span>Bristol Arts Charity</span></div>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="Venues.html">Venues</a></li>
+        <li><a href="Events.html">Events</a></li>
+        <li><a href="Community.html">Community</a></li>
+        <li><a href="Enquire.html" class="btn btn--crimson active" style="padding:7px 18px;font-size:0.83rem;">Enquire</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero" style="padding:52px 0 44px;">
+  <div class="page-hero__bg" style="background-image:url('ArtsMansion.PNG')"></div>
+  <div class="container">
+    <div class="page-hero__content">
+      <span class="page-hero__eyebrow">Get in Touch</span>
+      <h1>Booking Enquiry</h1>
+      <p>Tell us about your event and we'll be in touch to discuss how we can help.</p>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <div class="enquiry-layout">
+
+    <!-- Form -->
+    <section id="enquire" class="enquiry-form-card">
+      <h2>Make an Enquiry</h2>
+      <p class="subtitle">Fill in the form below, or use the chatbot (bottom right) to book step by step.</p>
+
+      <div id="status-message"></div>
+
+      <form id="main-enquiry-form">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input id="name" type="text" required placeholder="Full name">
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input id="email" type="email" required placeholder="you@example.com">
+        </div>
+
+        <div class="form-group">
+          <label for="building">Venue</label>
+          <select id="building" required>
+            <option value="">Select a venue…</option>
+            <option value="the-island">The Island</option>
+            <option value="arts-mansion">Arts Mansion</option>
+            <option value="sparks-bristol">Sparks Bristol</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Your Message</label>
+          <textarea id="message" required placeholder="Tell us about your event, expected attendees, preferred dates, and any other details…"></textarea>
+        </div>
+
+        <button id="submit-btn" class="submit-btn" type="submit">Submit Enquiry →</button>
+      </form>
+    </section>
+
+    <!-- Sidebar -->
+    <aside class="enquiry-sidebar">
+      <div class="info-card">
+        <h3><span>📍</span> Our Venues</h3>
+        <div class="venue-mini">
+          <div class="venue-mini-item">
+            <div class="venue-mini-item__dot"></div>
+            <span><strong>The Island</strong> — 50–100 people, city centre</span>
+          </div>
+          <div class="venue-mini-item">
+            <div class="venue-mini-item__dot"></div>
+            <span><strong>Arts Mansion</strong> — 100–200 people, Ashton Court</span>
+          </div>
+          <div class="venue-mini-item">
+            <div class="venue-mini-item__dot"></div>
+            <span><strong>Sparks Bristol</strong> — 30–80 people, step-free access</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <h3><span>📞</span> Contact Us Directly</h3>
+        <p>Office open weekdays 10am – 4pm<br>
+          <a href="tel:01173763457">0117 3763 457</a><br>
+          <a href="/cdn-cgi/l/email-protection#aec7c0c8c1eecfdcdadddecfcdcbc2c7c8cbdddecfcdcb80c1dcc9"><span class="__cf_email__" data-cfemail="bcd5d2dad3fcddcec8cfccdddfd9d0d5dad9cfccdddfd992d3cedb">[email&#160;protected]</span></a>
+        </p>
+      </div>
+
+      <div class="chatbot-tip">
+        <strong>💬 Prefer a guided experience?</strong>
+        Use the chatbot (bottom right) to book your event step by step — it'll fill out this form for you automatically.
+      </div>
+    </aside>
+
+  </div>
+</div>
+
+<div class="chatbot-fab" onclick="toggleChat()" aria-label="Open chatbot">💬</div>
+
+<div id="chat-window" style="display:none;">
+  <div class="chat-header">
+    <span>💬 ASLS Assistant</span>
+    <span class="chat-header__close" onclick="toggleChat()">✕</span>
+  </div>
+  <div id="chat-box"></div>
+  <div class="chat-input-area">
+    <input id="user-chat-input" type="text" placeholder="Ask me anything…">
+    <button onclick="processChat()">Send</button>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__inner">
+      <div>
+        <div class="site-footer__brand">ArtSpace LifeSpace</div>
+        <p class="site-footer__tagline">A Bristol-based charity transforming vacant spaces into vibrant creative communities since 2001.</p>
+      </div>
+      <div class="site-footer__contact">
+        <div>Office: weekdays 10am – 4pm</div>
+        <div><a href="tel:01173763457">0117 3763 457</a></div>
+        <div><a href="/cdn-cgi/l/email-protection#0d64636b624d6c7f797e7d6c6e6861646b687e7d6c6e6823627f6a"><span class="__cf_email__" data-cfemail="553c3b333a153427212625343630393c333026253436307b3a2732">[email&#160;protected]</span></a></div>
+      </div>
+    </div>
+    <div class="site-footer__bottom">© 2025 ArtSpace LifeSpace. Registered Charity.</div>
+  </div>
+</footer>
+
+
+<script>
+document.getElementById('high-contrast').addEventListener('click', function() {
+  document.body.classList.toggle('high-contrast');
+  this.textContent = document.body.classList.contains('high-contrast') ? '\u25d1 Standard' : '\u25d1 High Contrast';
+});
+
+document.getElementById('increase-text').addEventListener('click', function() {
+  document.body.classList.toggle('large-text');
+  this.textContent = document.body.classList.contains('large-text') ? 'Aa Normal Text' : 'Aa Larger Text';
+});
+</script>
+<script src="chatbot.js"></script>
+</body>
+</html>

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ArtSpace LifeSpace | Creative Spaces for Bristol</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+/* ── Page-specific: index.html ── */
+.hero-home {
+  position: relative;
+  overflow: hidden;
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  background: var(--black);
+}
+
+.hero-home__bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('Sparks.jpg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.3;
+}
+
+.hero-home__content {
+  position: relative;
+  z-index: 1;
+  padding: 80px 0;
+}
+
+.hero-home h1 {
+  font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+  color: #fff;
+  margin-bottom: 20px;
+  max-width: 680px;
+}
+
+.hero-home h1 em {
+  color: var(--gold);
+  font-style: normal;
+}
+
+.hero-home p {
+  color: rgba(255,255,255,0.72);
+  font-size: 1.1rem;
+  max-width: 540px;
+  margin-bottom: 32px;
+}
+
+.hero-home__cta { display: flex; gap: 12px; flex-wrap: wrap; }
+
+/* ── Stat strip ── */
+.stat-strip {
+  background: var(--crimson);
+  padding: 28px 0;
+}
+
+.stat-strip__inner {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+}
+
+.stat-strip__item {
+  text-align: center;
+  color: #fff;
+  padding: 0 24px;
+}
+
+.stat-strip__item + .stat-strip__item {
+  border-left: 1px solid rgba(255,255,255,0.25);
+}
+
+.stat-strip__num {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.stat-strip__label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  opacity: 0.9;
+}
+
+/* ── Intro section ── */
+.intro-section {
+  padding: 72px 0;
+  background: var(--off-white);
+}
+
+.intro-section__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.intro-section__text h2 {
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+}
+
+.intro-section__text p {
+  color: var(--mid);
+  margin-bottom: 16px;
+  line-height: 1.75;
+}
+
+.intro-section__image {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  aspect-ratio: 4/3;
+}
+
+.intro-section__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ── Venues strip ── */
+.venues-strip {
+  padding: 72px 0;
+  background: #fff;
+}
+
+.venues-strip h2 {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.venues-strip .lead {
+  color: var(--mid);
+  margin-bottom: 40px;
+}
+
+.venue-card {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+}
+
+.venue-card__bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.55s cubic-bezier(0.4,0,0.2,1);
+}
+
+.venue-card:hover .venue-card__bg { transform: scale(1.06); }
+
+.venue-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.1) 60%);
+}
+
+.venue-card__body {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px;
+  color: #fff;
+}
+
+.venue-card__tag {
+  display: inline-block;
+  background: var(--crimson);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.venue-card__name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  margin-bottom: 4px;
+}
+
+.venue-card__desc {
+  font-size: 0.82rem;
+  opacity: 0.8;
+  margin-bottom: 14px;
+}
+
+.venue-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--gold);
+  border-bottom: 1px solid rgba(231,210,19,0.5);
+  padding-bottom: 2px;
+  transition: var(--transition);
+}
+
+.venue-card:hover .venue-card__cta { color: #fff; border-color: rgba(255,255,255,0.5); }
+
+/* ── Mission callout ── */
+.mission-callout {
+  background: var(--black);
+  padding: 80px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.mission-callout::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  right: -60px;
+  width: 400px;
+  height: 400px;
+  background: var(--crimson);
+  border-radius: 50%;
+  opacity: 0.06;
+}
+
+.mission-callout__inner {
+  max-width: 720px;
+}
+
+.mission-callout blockquote {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.3rem, 3vw, 1.9rem);
+  color: #fff;
+  line-height: 1.5;
+  margin-bottom: 28px;
+  font-weight: 700;
+}
+
+.mission-callout blockquote span { color: var(--gold); }
+
+@media (max-width: 768px) {
+  .intro-section__inner { grid-template-columns: 1fr; gap: 32px; }
+  .stat-strip__inner { grid-template-columns: 1fr; gap: 20px; }
+  .stat-strip__item + .stat-strip__item { border-left: none; border-top: 1px solid rgba(255,255,255,0.25); padding-top: 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Top Bar -->
+<div class="top-bar">
+  <div class="container top-bar__inner">
+    <span class="top-bar__note">Need help? Use the chatbot ↘ or visit the enquiry form</span>
+    <div class="top-bar__controls">
+      <button class="a11y-btn" id="increase-text">Aa Larger Text</button>
+      <button class="a11y-btn" id="high-contrast">◑ High Contrast</button>
+    </div>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="index.html" class="logo">
+      <img src="LifespaceLogo.PNG" alt="ArtSpace LifeSpace logo">
+      <div class="logo__text">
+        ArtSpace LifeSpace
+        <span>Bristol Arts Charity</span>
+      </div>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="Venues.html">Venues</a></li>
+        <li><a href="Events.html">Events</a></li>
+        <li><a href="Community.html">Community</a></li>
+        <li><a href="Enquire.html" class="btn btn--crimson" style="padding:7px 18px;font-size:0.83rem;">Enquire</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero-home">
+  <div class="hero-home__bg"></div>
+  <div class="container hero-home__content">
+    <div class="section-label"><span>Since 2001</span></div>
+    <h1>Creative Spaces for <em>Artists & Communities</em></h1>
+    <p>Transforming vacant buildings into thriving cultural centres across Bristol and North Somerset.</p>
+    <div class="hero-home__cta">
+      <a href="Venues.html" class="btn btn--crimson">Explore Our Venues</a>
+      <a href="Enquire.html" class="btn btn--outline" style="color:#fff;border-color:rgba(255,255,255,0.45);">Make an Enquiry</a>
+    </div>
+  </div>
+</section>
+
+<!-- Stat Strip -->
+<div class="stat-strip">
+  <div class="container stat-strip__inner">
+    <div class="stat-strip__item">
+      <span class="stat-strip__num">20+</span>
+      <span class="stat-strip__label">Years of Creative Placemaking</span>
+    </div>
+    <div class="stat-strip__item">
+      <span class="stat-strip__num">3</span>
+      <span class="stat-strip__label">Unique Venues in Bristol</span>
+    </div>
+    <div class="stat-strip__item">
+      <span class="stat-strip__num">100s</span>
+      <span class="stat-strip__label">Artists Supported</span>
+    </div>
+  </div>
+</div>
+
+<!-- Intro -->
+<section class="intro-section">
+  <div class="container intro-section__inner">
+    <div class="intro-section__text">
+      <div class="section-label"><span>Who We Are</span></div>
+      <h2>A Registered Charity Reviving Forgotten Spaces</h2>
+      <p>ArtSpace LifeSpace (ASLS) specialises in repurposing underused buildings into vibrant community arts centres, working closely with artists, property owners, local authorities and communities.</p>
+      <p>Our 'meanwhile use' approach provides security and cost savings for property owners, which can be reinvested back into supporting the local artist and creative economy.</p>
+      <a href="Community.html" class="btn btn--crimson" style="margin-top:8px;">Our Story &rarr;</a>
+    </div>
+    <div class="intro-section__image">
+      <img src="ArtsMansion.PNG" alt="Arts Mansion, Ashton Court Estate">
+    </div>
+  </div>
+</section>
+
+<!-- Venues -->
+<section class="venues-strip">
+  <div class="container">
+    <div class="section-label"><span>Our Spaces</span></div>
+    <h2>Three Distinctive Venues</h2>
+    <p class="lead">Each with its own character — all available to hire for your next event.</p>
+    <div class="grid-3">
+      <a href="Enquire.html" class="venue-card">
+        <div class="venue-card__bg" style="background-image:url('IslandPanorama.PNG')"></div>
+        <div class="venue-card__overlay"></div>
+        <div class="venue-card__body">
+          <span class="venue-card__tag">City Centre</span>
+          <div class="venue-card__name">The Island</div>
+          <div class="venue-card__desc">Former police station — waterfront, outdoor space, natural light.</div>
+          <span class="venue-card__cta">Enquire now →</span>
+        </div>
+      </a>
+      <a href="Enquire.html" class="venue-card">
+        <div class="venue-card__bg" style="background-image:url('ArtsMansion.PNG')"></div>
+        <div class="venue-card__overlay"></div>
+        <div class="venue-card__body">
+          <span class="venue-card__tag">North Somerset</span>
+          <div class="venue-card__name">Arts Mansion</div>
+          <div class="venue-card__desc">Historic Ashton Court Estate venue with high ceilings and multiple rooms.</div>
+          <span class="venue-card__cta">Enquire now →</span>
+        </div>
+      </a>
+      <a href="Enquire.html" class="venue-card">
+        <div class="venue-card__bg" style="background-image:url('Sparks.jpg')"></div>
+        <div class="venue-card__overlay"></div>
+        <div class="venue-card__body">
+          <span class="venue-card__tag">Sustainability Hub</span>
+          <div class="venue-card__name">Sparks Bristol</div>
+          <div class="venue-card__desc">Former department store — modern facilities, step-free access.</div>
+          <span class="venue-card__cta">Enquire now →</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Mission callout -->
+<section class="mission-callout">
+  <div class="container mission-callout__inner">
+    <div class="section-label"><span style="color:rgba(231,210,19,0.7);">Our Mission</span></div>
+    <blockquote>
+      "Curating and caring for diverse spaces to create welcoming places where <span>artists can create, collaborate and present their work</span> for the public."
+    </blockquote>
+    <a href="Community.html" class="btn btn--gold">Learn More About Us →</a>
+  </div>
+</section>
+
+<!-- Chatbot FAB -->
+<div class="chatbot-fab" onclick="toggleChat()" aria-label="Open chatbot">💬</div>
+
+<!-- Chat Window -->
+<div id="chat-window" style="display:none;">
+  <div class="chat-header">
+    <span>💬 ASLS Assistant</span>
+    <span class="chat-header__close" onclick="toggleChat()">✕</span>
+  </div>
+  <div id="chat-box"></div>
+  <div class="chat-input-area">
+    <input id="user-chat-input" type="text" placeholder="Ask me anything…">
+    <button onclick="processChat()">Send</button>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__inner">
+      <div>
+        <div class="site-footer__brand">ArtSpace LifeSpace</div>
+        <p class="site-footer__tagline">A Bristol-based charity transforming vacant spaces into vibrant creative communities since 2001.</p>
+      </div>
+      <div class="site-footer__contact">
+        <div>Office: weekdays 10am – 4pm</div>
+        <div><a href="tel:01173763457">0117 3763 457</a></div>
+        <div><a href="/cdn-cgi/l/email-protection#81e8efe7eec1e0f3f5f2f1e0e2e4ede8e7e4f2f1e0e2e4afeef3e6"><span class="__cf_email__" data-cfemail="bfd6d1d9d0ffdecdcbcccfdedcdad3d6d9dacccfdedcda91d0cdd8">[email&#160;protected]</span></a></div>
+      </div>
+    </div>
+    <div class="site-footer__bottom">© 2025 ArtSpace LifeSpace. Registered Charity.</div>
+  </div>
+</footer>
+
+
+<script>
+document.getElementById('high-contrast').addEventListener('click', function() {
+  document.body.classList.toggle('high-contrast');
+  this.textContent = document.body.classList.contains('high-contrast') ? '◑ Standard' : '◑ High Contrast';
+});
+
+document.getElementById('increase-text').addEventListener('click', function() {
+  document.body.classList.toggle('large-text');
+  this.textContent = document.body.classList.contains('large-text') ? 'Aa Normal Text' : 'Aa Larger Text';
+});
+</script>
+<script src="chatbot.js"></script>
+</body>
+</html>
