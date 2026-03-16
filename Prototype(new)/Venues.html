@@ -12,7 +12,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 24px;
-  padding: 56px 0 40px;
+  padding: 32px 0 24px;
 }
 
 .venue-card {
@@ -57,7 +57,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 24px;
+  padding: 16px;
   color: #fff;
 }
 
@@ -81,13 +81,13 @@
 
 .venue-card__name {
   font-family: 'Playfair Display', serif;
-  font-size: 1.5rem;
+  font-size: 1.15rem;
   margin-bottom: 4px;
   font-weight: 700;
 }
 
 .venue-card__teaser {
-  font-size: 0.82rem;
+  font-size: 0.76rem;
   opacity: 0.82;
   margin-bottom: 14px;
   line-height: 1.5;
@@ -151,13 +151,13 @@
 }
 
 .panel-header__info {
-  padding: 32px 36px;
+  padding: 14px 18px;
   background: var(--black);
   color: #fff;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 14px;
+  gap: 10px;
 }
 
 .panel-header__badge {
@@ -174,21 +174,21 @@
 }
 
 .panel-header__title {
-  font-size: 1.9rem;
+  font-size: 1.45rem;
   color: #fff;
   margin: 0;
   line-height: 1.1;
 }
 
 .panel-header__tagline {
-  font-size: 0.9rem;
+  font-size: 0.82rem;
   color: rgba(255,255,255,0.65);
   font-style: italic;
   margin: 0;
 }
 
 .panel-header__desc {
-  font-size: 0.88rem;
+  font-size: 0.74rem;
   color: rgba(255,255,255,0.72);
   line-height: 1.7;
   margin: 0;
@@ -203,23 +203,23 @@
 }
 
 .panel-meta__cell {
-  padding: 14px 0;
+  padding: 10px 0;
   border-right: 1px solid rgba(255,255,255,0.1);
 }
 
 .panel-meta__cell:last-child { border-right: none; }
 
 .panel-meta__label {
-  font-size: 0.62rem;
+  font-size: 0.58rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 5px;
+  margin-bottom: 3px;
 }
 
 .panel-meta__value {
-  font-size: 0.8rem;
+  font-size: 0.74rem;
   color: rgba(255,255,255,0.75);
   line-height: 1.55;
 }
@@ -228,11 +228,11 @@
 .panel-meta__value a:hover { text-decoration: underline; }
 
 /* ── Spaces accordion inside panel ── */
-.panel-body { padding: 32px 36px; }
+.panel-body { padding: 14px 18px; }
 
 .panel-body__heading {
-  font-size: 1.1rem;
-  margin-bottom: 16px;
+  font-size: 0.92rem;
+  margin-bottom: 10px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -241,7 +241,7 @@
 .panel-body__heading span { color: var(--crimson); }
 
 /* ── Space accordion items ── */
-.space-accordion { display: flex; flex-direction: column; gap: 8px; margin-bottom: 28px; }
+.space-accordion { display: flex; flex-direction: column; gap: 6px; margin-bottom: 18px; }
 
 .space-item {
   border: 1px solid var(--border);
@@ -256,10 +256,10 @@
   width: 100%;
   background: var(--off-white);
   border: none;
-  padding: 14px 20px;
+  padding: 10px 14px;
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
   cursor: pointer;
   text-align: left;
   transition: background 0.2s;
@@ -270,15 +270,15 @@
 .space-item.open .space-item__trigger { background: rgba(214,47,99,0.08); }
 
 .space-item__icon {
-  font-size: 1.3rem;
-  width: 36px;
+  font-size: 1rem;
+  width: 28px;
   text-align: center;
   flex-shrink: 0;
 }
 
 .space-item__name {
   font-family: 'Playfair Display', serif;
-  font-size: 1rem;
+  font-size: 0.88rem;
   font-weight: 700;
   color: var(--black);
   flex: 1;
@@ -295,7 +295,7 @@
 
 .space-item__body {
   display: none;
-  padding: 0 20px 18px 70px;
+  padding: 0 14px 14px 52px;
   background: #fff;
   animation: fadeIn 0.2s ease;
 }
@@ -308,7 +308,7 @@
 }
 
 .space-item__desc {
-  font-size: 0.88rem;
+  font-size: 0.74rem;
   color: var(--mid);
   line-height: 1.7;
   margin-bottom: 12px;
@@ -318,7 +318,7 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.8rem;
+  font-size: 0.74rem;
   font-weight: 600;
   color: var(--crimson);
   border-bottom: 1px solid rgba(214,47,99,0.35);
@@ -333,14 +333,14 @@
 .panel-quote {
   background: var(--black);
   border-left: 4px solid var(--gold);
-  padding: 20px 24px;
+  padding: 14px 18px;
   border-radius: 0 var(--radius-md) var(--radius-md) 0;
-  margin-bottom: 28px;
+  margin-bottom: 16px;
 }
 
 .panel-quote blockquote {
   font-family: 'Playfair Display', serif;
-  font-size: 0.95rem;
+  font-size: 0.84rem;
   color: rgba(255,255,255,0.88);
   line-height: 1.65;
   font-style: italic;
@@ -359,11 +359,11 @@
   background: rgba(214,47,99,0.05);
   border: 1px solid rgba(214,47,99,0.18);
   border-radius: var(--radius-md);
-  padding: 16px 20px;
+  padding: 10px 14px;
   display: flex;
   gap: 12px;
   align-items: flex-start;
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   color: var(--mid);
   line-height: 1.65;
 }
@@ -375,7 +375,7 @@
 .panel-enquire-row {
   display: flex;
   justify-content: flex-end;
-  padding: 20px 36px 28px;
+  padding: 14px 24px 18px;
   border-top: 1px solid var(--border);
   background: var(--off-white);
   gap: 12px;
@@ -383,7 +383,7 @@
 }
 
 /* ── CTA strip ── */
-.enquire-strip { background: var(--crimson); padding: 56px 0; text-align: center; }
+.enquire-strip { background: var(--crimson); padding: 32px 0; text-align: center; }
 .enquire-strip h2 { color: #fff; margin-bottom: 10px; }
 .enquire-strip p { color: rgba(255,255,255,0.82); margin-bottom: 24px; }
 
@@ -391,10 +391,10 @@
   .panel-header { grid-template-columns: 1fr; }
   .panel-meta { grid-template-columns: 1fr; }
   .panel-meta__cell { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); padding: 12px 0; }
-  .panel-header__info { padding: 24px; }
-  .panel-body { padding: 24px; }
+  .panel-header__info { padding: 16px; }
+  .panel-body { padding: 16px; }
   .space-item__body { padding-left: 20px; }
-  .panel-enquire-row { padding: 16px 24px 24px; }
+  .panel-enquire-row { padding: 10px 16px 16px; }
 }
 
 @media (max-width: 540px) {
@@ -426,7 +426,7 @@
         <li><a href="Venues.html" class="active">Venues</a></li>
         <li><a href="Events.html">Events</a></li>
         <li><a href="Community.html">Community</a></li>
-        <li><a href="Enquire.html" class="btn btn--crimson" style="padding:7px 18px;font-size:0.83rem;">Enquire</a></li>
+        <li><a href="Enquire.html" class="btn btn--crimson" style="padding:5px 14px;font-size:0.78rem;"><span>Enquire</span></a></li>
       </ul>
     </nav>
   </div>

@@ -11,7 +11,7 @@
 .gallery-band {
   position: relative;
   overflow: hidden;
-  min-height: 280px;
+  min-height: 180px;
   display: flex;
   align-items: center;
 }
@@ -45,10 +45,10 @@
 .gallery-band__content {
   position: relative;
   z-index: 1;
-  padding: 52px 0;
+  padding: 32px 0;
 }
 
-.gallery-band__content h2 { color: #fff; font-size: 1.9rem; margin-bottom: 10px; }
+.gallery-band__content h2 { color: #fff; font-size: 1.4rem; margin-bottom: 8px; }
 .gallery-band__content p  { color: rgba(255,255,255,0.85); max-width: 600px; line-height: 1.7; }
 
 /* ── Pillar list ── */
@@ -63,12 +63,12 @@
 .pillar-list li {
   display: flex;
   align-items: flex-start;
-  gap: 14px;
-  padding: 14px 18px;
+  gap: 10px;
+  padding: 10px 14px;
   background: var(--off-white);
   border-radius: var(--radius-sm);
   border-left: 3px solid var(--crimson);
-  font-size: 0.93rem;
+  font-size: 0.82rem;
   line-height: 1.5;
 }
 
@@ -84,20 +84,20 @@
 .two-col {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 52px;
+  gap: 32px;
   align-items: start;
 }
 
 /* ── History map feature ── */
 .history-feature {
   background: var(--black);
-  padding: 64px 0;
+  padding: 38px 0;
 }
 
 .history-feature__inner {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 48px;
+  gap: 32px;
   align-items: center;
 }
 
@@ -105,17 +105,17 @@
 
 .history-feature__text h2 {
   color: #fff;
-  font-size: 2rem;
-  margin-bottom: 16px;
+  font-size: 1.5rem;
+  margin-bottom: 12px;
 }
 
 .history-feature__text p {
   line-height: 1.75;
-  margin-bottom: 14px;
-  font-size: 0.95rem;
+  margin-bottom: 10px;
+  font-size: 0.84rem;
 }
 
-.history-feature__text p:last-of-type { margin-bottom: 28px; }
+.history-feature__text p:last-of-type { margin-bottom: 18px; }
 
 .history-feature__image {
   border-radius: var(--radius-lg);
@@ -186,7 +186,7 @@
 @media (max-width: 768px) {
   .two-col { grid-template-columns: 1fr; gap: 32px; }
   .history-feature__inner { grid-template-columns: 1fr; gap: 32px; }
-  .history-feature { padding: 48px 0; }
+  .history-feature { padding: 30px 0; }
 }
 </style>
 </head>
@@ -214,7 +214,7 @@
         <li><a href="Venues.html">Venues</a></li>
         <li><a href="Events.html">Events</a></li>
         <li><a href="Community.html" class="active">Community</a></li>
-        <li><a href="Enquire.html" class="btn btn--crimson" style="padding:7px 18px;font-size:0.83rem;">Enquire</a></li>
+        <li><a href="Enquire.html" class="btn btn--crimson" style="padding:5px 14px;font-size:0.78rem;"><span>Enquire</span></a></li>
       </ul>
     </nav>
   </div>
@@ -243,13 +243,13 @@
 </div>
 
 <!-- What We Offer + Mission -->
-<section class="section" style="background:#fff;">
+<section class="section" style="background:var(--surface);">
   <div class="container">
     <div class="two-col">
 
       <div>
         <div class="section-label"><span>What We Offer</span></div>
-        <h2 style="font-size:1.9rem;margin-bottom:16px;">How We Support the Creative Community</h2>
+        <h2 style="font-size:1.4rem;margin-bottom:10px;">How We Support the Creative Community</h2>
         <ul class="pillar-list">
           <li>Affordable artist and music studios and creative workshop space</li>
           <li>Artist residency programme supporting emerging talent</li>
@@ -263,7 +263,7 @@
 
       <div>
         <div class="section-label"><span>Our Mission</span></div>
-        <h2 style="font-size:1.9rem;margin-bottom:16px;">Creative Placemakers for Bristol</h2>
+        <h2 style="font-size:1.4rem;margin-bottom:10px;">Creative Placemakers for Bristol</h2>
         <p style="color:var(--mid);line-height:1.75;margin-bottom:14px;">Artspace Lifespace are creative placemakers, curating and caring for a diverse range of spaces to create welcoming places that reflect the community's identity and values — where artists can create, collaborate and present their work.</p>
         <p style="color:var(--mid);line-height:1.75;margin-bottom:24px;">Our organisation exists to promote art for the benefit of the public by establishing and maintaining facilities for artists from a variety of artistic practices to create, collaborate and present their work.</p>
         <ul class="pillar-list">
@@ -302,11 +302,11 @@
 </section>
 
 <!-- Accessibility band -->
-<section class="section section--dark" style="padding:52px 0;">
+<section class="section section--dark" style="padding:32px 0;">
   <div class="container">
     <div class="section-label"><span style="color:rgba(231,210,19,0.7);">Accessibility</span></div>
-    <h2 style="color:#fff;margin-bottom:12px;font-size:1.8rem;">Inclusive by Design</h2>
-    <p style="color:rgba(255,255,255,0.7);max-width:580px;margin-bottom:28px;line-height:1.75;">ASLS is committed to inclusivity across all our venues. Sparks Bristol is fully step-free with lift access, a quiet sensory pod, and a prayer room. Please let us know your specific needs when making an enquiry and we'll do everything we can to accommodate.</p>
+    <h2 style="color:#fff;margin-bottom:8px;font-size:1.35rem;">Inclusive by Design</h2>
+    <p style="color:rgba(255,255,255,0.7);max-width:580px;margin-bottom:18px;line-height:1.75;">ASLS is committed to inclusivity across all our venues. Sparks Bristol is fully step-free with lift access, a quiet sensory pod, and a prayer room. Please let us know your specific needs when making an enquiry and we'll do everything we can to accommodate.</p>
     <a href="Enquire.html" class="btn btn--gold">Get in Touch →</a>
   </div>
 </section>
@@ -343,7 +343,7 @@
       <div class="site-footer__contact">
         <div>Office: weekdays 10am – 4pm</div>
         <div><a href="tel:01173763457">0117 3763 457</a></div>
-        <div><a href="mailto:info@artspacelifespace.org">info@artspacelifespace.org</a></div>
+        <div><a href="/cdn-cgi/l/email-protection#254c4b434a654457515655444640494c434056554446400b4a5742"><span class="__cf_email__" data-cfemail="9ff6f1f9f0dffeedebeceffefcfaf3f6f9faeceffefcfab1f0edf8">[email&#160;protected]</span></a></div>
         <div style="margin-top:8px;">
           <a href="https://facebook.com/artspaceuk" target="_blank" rel="noopener" style="margin-right:10px;">Facebook</a>
           <a href="https://instagram.com/artspaceuk" target="_blank" rel="noopener">Instagram</a>
@@ -354,7 +354,7 @@
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 document.getElementById('high-contrast').addEventListener('click', function() {
   document.body.classList.toggle('high-contrast');
   this.textContent = document.body.classList.contains('high-contrast') ? '◑ Standard' : '◑ High Contrast';

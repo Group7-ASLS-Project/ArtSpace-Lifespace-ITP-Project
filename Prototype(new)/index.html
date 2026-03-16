@@ -10,7 +10,7 @@
 .hero-home {
   position: relative;
   overflow: hidden;
-  min-height: 520px;
+  min-height: 220px;
   display: flex;
   align-items: center;
   background: var(--black);
@@ -28,14 +28,14 @@
 .hero-home__content {
   position: relative;
   z-index: 1;
-  padding: 80px 0;
+  padding: 18px 0;
 }
 
 .hero-home h1 {
-  font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
   color: #fff;
-  margin-bottom: 20px;
-  max-width: 680px;
+  margin-bottom: 14px;
+  max-width: 580px;
 }
 
 .hero-home h1 em {
@@ -45,9 +45,9 @@
 
 .hero-home p {
   color: rgba(255,255,255,0.72);
-  font-size: 1.1rem;
-  max-width: 540px;
-  margin-bottom: 32px;
+  font-size: 0.88rem;
+  max-width: 480px;
+  margin-bottom: 22px;
 }
 
 .hero-home__cta { display: flex; gap: 12px; flex-wrap: wrap; }
@@ -55,7 +55,7 @@
 /* ── Stat strip ── */
 .stat-strip {
   background: var(--crimson);
-  padding: 28px 0;
+  padding: 18px 0;
 }
 
 .stat-strip__inner {
@@ -77,7 +77,7 @@
 .stat-strip__num {
   display: block;
   font-family: 'Playfair Display', serif;
-  font-size: 2.2rem;
+  font-size: 1.6rem;
   font-weight: 900;
   color: var(--gold);
   line-height: 1;
@@ -85,7 +85,7 @@
 }
 
 .stat-strip__label {
-  font-size: 0.8rem;
+  font-size: 0.72rem;
   font-weight: 500;
   letter-spacing: 0.06em;
   opacity: 0.9;
@@ -93,19 +93,19 @@
 
 /* ── Intro section ── */
 .intro-section {
-  padding: 72px 0;
-  background: var(--off-white);
+  padding: 44px 0;
+  background: var(--surface);
 }
 
 .intro-section__inner {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 64px;
+  gap: 36px;
   align-items: center;
 }
 
 .intro-section__text h2 {
-  font-size: 2.2rem;
+  font-size: 1.6rem;
   margin-bottom: 20px;
 }
 
@@ -130,18 +130,18 @@
 
 /* ── Venues strip ── */
 .venues-strip {
-  padding: 72px 0;
-  background: #fff;
+  padding: 44px 0;
+  background: var(--surface);
 }
 
 .venues-strip h2 {
-  font-size: 2rem;
-  margin-bottom: 8px;
+  font-size: 1.5rem;
+  margin-bottom: 6px;
 }
 
 .venues-strip .lead {
   color: var(--mid);
-  margin-bottom: 40px;
+  margin-bottom: 26px;
 }
 
 .venue-card {
@@ -174,7 +174,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 24px;
+  padding: 16px;
   color: #fff;
 }
 
@@ -193,7 +193,7 @@
 
 .venue-card__name {
   font-family: 'Playfair Display', serif;
-  font-size: 1.3rem;
+  font-size: 1.05rem;
   margin-bottom: 4px;
 }
 
@@ -220,7 +220,7 @@
 /* ── Mission callout ── */
 .mission-callout {
   background: var(--black);
-  padding: 80px 0;
+  padding: 48px 0;
   position: relative;
   overflow: hidden;
 }
@@ -243,18 +243,18 @@
 
 .mission-callout blockquote {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(1.3rem, 3vw, 1.9rem);
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
   color: #fff;
   line-height: 1.5;
-  margin-bottom: 28px;
+  margin-bottom: 18px;
   font-weight: 700;
 }
 
 .mission-callout blockquote span { color: var(--gold); }
 
 @media (max-width: 768px) {
-  .intro-section__inner { grid-template-columns: 1fr; gap: 32px; }
-  .stat-strip__inner { grid-template-columns: 1fr; gap: 20px; }
+  .intro-section__inner { grid-template-columns: 1fr; gap: 12px; }
+  .stat-strip__inner { grid-template-columns: 1fr; gap: 12px; }
   .stat-strip__item + .stat-strip__item { border-left: none; border-top: 1px solid rgba(255,255,255,0.25); padding-top: 20px; }
 }
 </style>
@@ -288,7 +288,7 @@
         <li><a href="Venues.html">Venues</a></li>
         <li><a href="Events.html">Events</a></li>
         <li><a href="Community.html">Community</a></li>
-        <li><a href="Enquire.html" class="btn btn--crimson" style="padding:7px 18px;font-size:0.83rem;">Enquire</a></li>
+        <li><a href="Enquire.html" class="btn btn--crimson" style="padding:5px 14px;font-size:0.78rem;"><span>Enquire</span></a></li>
       </ul>
     </nav>
   </div>
@@ -421,7 +421,7 @@
       <div class="site-footer__contact">
         <div>Office: weekdays 10am – 4pm</div>
         <div><a href="tel:01173763457">0117 3763 457</a></div>
-        <div><a href="/cdn-cgi/l/email-protection#81e8efe7eec1e0f3f5f2f1e0e2e4ede8e7e4f2f1e0e2e4afeef3e6"><span class="__cf_email__" data-cfemail="bfd6d1d9d0ffdecdcbcccfdedcdad3d6d9dacccfdedcda91d0cdd8">[email&#160;protected]</span></a></div>
+        <div><a href="/cdn-cgi/l/email-protection#b3daddd5dcf3d2c1c7c0c3d2d0d6dfdad5d6c0c3d2d0d69ddcc1d4"><span class="__cf_email__" data-cfemail="7b12151d143b1a090f080b1a181e17121d1e080b1a181e5514091c">[email&#160;protected]</span></a></div>
       </div>
     </div>
     <div class="site-footer__bottom">© 2025 ArtSpace LifeSpace. Registered Charity.</div>
@@ -429,7 +429,7 @@
 </footer>
 
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 document.getElementById('high-contrast').addEventListener('click', function() {
   document.body.classList.toggle('high-contrast');
   this.textContent = document.body.classList.contains('high-contrast') ? '◑ Standard' : '◑ High Contrast';
