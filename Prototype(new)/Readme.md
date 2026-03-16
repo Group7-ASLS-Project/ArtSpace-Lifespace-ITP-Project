@@ -139,16 +139,6 @@ These are toggled by clicking the buttons. They reset when the page is refreshed
 **You need to update venue details or pricing**
 - Contact your developer to update the content in `chatbot.js` (venue details) or the relevant HTML page
 
----
-
-## 10. Key Contacts
-
-| Role | Contact |
-|------|---------|
-| ASLS Office | info@artspacelifespace.org |
-| Office Phone | 0117 3763 457 |
-| Office Hours | Weekdays, 10am – 4pm |
-
 For any technical issues with the website or booking system, contact the developer who built and handed over this project.
 
 ---
