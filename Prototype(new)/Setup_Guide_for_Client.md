@@ -8,7 +8,7 @@ This guide will help you connect your booking form to Google Sheets so all booki
 
 ## What You'll Need
 - A Google account
-- The `Enquire.html` file
+- The `chatbot.js` file
 - 10 minutes
 
 ---
@@ -107,7 +107,7 @@ After authorization:
 
 ## Step 6: Update the HTML File
 
-1. Open `Enquire.html` in a text editor (Notepad, VS Code, etc.)
+1. Open `chatbot.js` in a text editor (Notepad, VS Code, etc.)
 2. Find line 8 (or search for `GOOGLE_SHEETS_URL`)
 3. Replace `PASTE_YOUR_WEB_APP_URL_HERE` with your actual URL
 
@@ -127,7 +127,7 @@ const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/YOUR_URL_HERE/exec
 
 ## Step 7: Test
 
-1. Open `Enquire.html` in your browser
+1. Open `chatbot.js` in your browser
 2. Fill out the booking form with test data
 3. Click **Submit Enquiry**
 4. Check your Google Sheet - a new row should appear!
@@ -159,7 +159,7 @@ Your booking system is now live. Every booking will automatically be saved to yo
 
 **Problem: No bookings appearing**
 - Check that "Who has access" is set to **Anyone** (Step 3)
-- Verify the URL in `Enquire.html` is correct (Step 6)
+- Verify the URL in `chatbot.js` is correct (Step 6)
 
 **Problem: Can't find my URL**
 - Apps Script → Deploy → Manage deployments → Copy URL

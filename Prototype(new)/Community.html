@@ -355,6 +355,7 @@
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Accessibility Controls
 document.getElementById('high-contrast').addEventListener('click', function() {
   document.body.classList.toggle('high-contrast');
   this.textContent = document.body.classList.contains('high-contrast') ? '◑ Standard' : '◑ High Contrast';
@@ -364,16 +365,19 @@ document.getElementById('increase-text').addEventListener('click', function() {
   this.textContent = document.body.classList.contains('large-text') ? 'Aa Normal Text' : 'Aa Larger Text';
 });
 
+//when the map image is clicked, the lightbox will open and show the full map (line 148)
 function openLightbox() {
   document.getElementById('map-lightbox').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
 
+//when the lightbox is clicked (outside the image), it will close the lightbox and restore the scroll (line 148)
 function closeLightbox() {
   document.getElementById('map-lightbox').classList.remove('open');
   document.body.style.overflow = '';
 }
 
+// Also close lightbox when pressing the Escape key
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') closeLightbox();
 });

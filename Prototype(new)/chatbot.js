@@ -3,7 +3,7 @@
 // ============================================
 
 // ============================================
-// CONFIGURATION Please follow the guide to get the link
+// CONFIGURATION Please follow the Setup_Guide_for_Client.md to get the link
 // ============================================
 const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzn9SEoHm8Ckytdglo5BIcOjZxp02QaOzJd45ttUblbpSEdb9JBv8tkgAJ9qCZJRSA-1g/exec';
 
@@ -60,7 +60,7 @@ const venueDetails = {
 };
 
 // ============================================
-// STATE MANAGEMENT
+// Default variables
 // ============================================
 let userName = "";
 let userEmail = "";
@@ -72,7 +72,7 @@ let chatGreeted = false; // tracks whether the greeting has been shown
 // ============================================
 // CHATBOT FUNCTIONS
 // ============================================
-
+// When chat window open, greet and ask for name 
 function toggleChat() {
     const win = document.getElementById('chat-window');
     if (win.style.display === 'flex') {
@@ -92,6 +92,7 @@ function toggleChat() {
     }
 }
 
+// Identify the text is user or bot and make the message appear to be different color in the chat box
 function addMessage(text, isUser, isHTML = false) {
     const chatBox = document.getElementById('chat-box');
     const msgDiv = document.createElement('div');
@@ -101,6 +102,7 @@ function addMessage(text, isUser, isHTML = false) {
     chatBox.scrollTop = chatBox.scrollHeight;
 }
 
+// show the option that the user can click
 function showOptions() {
     let optionsHTML = `
         <div style="margin-bottom: 8px;"><strong>Choose a topic:</strong></div>
@@ -113,6 +115,7 @@ function showOptions() {
     addMessage(optionsHTML, false, true);
 }
 
+// find the response based on the user input and the knowledge base
 function findResponse(input) {
     const lowerInput = input.toLowerCase();
     for (const cat of knowledgeCategories) {
@@ -121,6 +124,7 @@ function findResponse(input) {
     return null;
 }
 
+// when user click the option, show the response and then show the back to main menu button
 function selectOption(choice) {
     addMessage(choice, true);
     const response = findResponse(choice);
@@ -130,6 +134,7 @@ function selectOption(choice) {
     }, 800);
 }
 
+//Start the booking process and collect the enquiry form info from user
 function startBooking() {
     addMessage("Book an Event", true);
     bookingState = "collecting";
@@ -140,6 +145,7 @@ function startBooking() {
     setTimeout(() => askNextBookingQuestion(), 500);
 }
 
+//Ask question step by step and do the booking enquiry 
 function askNextBookingQuestion() {
     switch(currentStep) {
         case 0:
@@ -188,6 +194,7 @@ function askNextBookingQuestion() {
     }
 }
 
+// show venue details when the user click the button
 function showVenueDetails() {
     addMessage("Tell me more about the venues", true);
     let detailsHTML = `
@@ -214,6 +221,7 @@ function showVenueDetails() {
     addMessage(detailsHTML, false, true);
 }
 
+//after the user select the venue, chatbot will show the venue details
 function selectVenue(venueId) {
     const venue = venueDetails[venueId];
     tempBookingData.building = venueId;
@@ -226,6 +234,7 @@ function selectVenue(venueId) {
     setTimeout(() => askNextBookingQuestion(), 800);
 }
 
+//show the summary of user's booking enquiry and ask for confirmation 
 function showBookingSummary() {
     let summary = `
         <div style="padding: 12px; border-radius: 8px; margin: 8px 0;">
@@ -246,6 +255,7 @@ function showBookingSummary() {
     addMessage(summary, false, true);
 }
 
+//if user click confirm chatbot will fill the enquiry form for user, if user is not in enquiry page, chatbot will redirect to the enquiry page and fill in the form
 function confirmBooking() {
     addMessage("Confirm & Submit", true);
     
@@ -268,7 +278,7 @@ function confirmBooking() {
         messageField.value = formMessage;
     }
 
-    if (nameField) {
+    if (nameField) { // already in the enquiry page
         addMessage("✅ Perfect! I've filled out the booking form for you. Please review and submit it below.", false);
         addMessage("The page will scroll to the form in a moment...", false);
         setTimeout(() => {
@@ -279,7 +289,7 @@ function confirmBooking() {
                 setTimeout(() => { enquireSection.style.outline = ''; }, 2000);
             }
         }, 1500);
-    } else {
+    } else { // not in the enquiry page and redirect
         sessionStorage.setItem('pendingBooking', JSON.stringify(tempBookingData));
         addMessage("✅ Great! Taking you to the enquiry form now...", false);
         setTimeout(() => { window.location.href = 'Enquire.html'; }, 1200);
@@ -290,6 +300,7 @@ function confirmBooking() {
     currentStep = 0;
 }
 
+// user click cancel, chatbot will cancel process
 function cancelBooking() {
     addMessage("Cancel", true);
     addMessage("No problem! Booking cancelled. How else can I help you?", false);
@@ -299,6 +310,7 @@ function cancelBooking() {
     setTimeout(() => showOptions(), 800);
 }
 
+// user input and press enter, it will process the input to the chat
 function processChat() {
     const inputField = document.getElementById('user-chat-input');
     const userInput = inputField.value.trim();
@@ -314,6 +326,7 @@ function processChat() {
         return;
     }
 
+    // If we are in the middle of booking, follow the steps
     if (bookingState === "collecting") {
         switch(currentStep) {
             case 0:
@@ -382,6 +395,7 @@ function processChat() {
     }
 }
 
+// validate email format
 function validateEmail(email) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
@@ -391,6 +405,7 @@ function validateEmail(email) {
 // GOOGLE SHEETS INTEGRATION
 // ============================================
 
+// get venue name based on venue id 
 function getVenueName(venueId) {
     const venueNames = {
         'the-island': 'The Island',
@@ -400,6 +415,7 @@ function getVenueName(venueId) {
     return venueNames[venueId] || venueId;
 }
 
+// get data and tranform to be a structed data that can be sent to google spreadsheet
 function parseBookingMessage(message) {
     const details = { eventType: '', attendees: '', preferredDate: '' };
     const lines = message.split('\n');
@@ -415,6 +431,7 @@ function parseBookingMessage(message) {
     return details;
 }
 
+//show do the booking enquiry is successfully submitted or not
 function showStatus(message, isSuccess) {
     const statusDiv = document.getElementById('status-message');
     if (!statusDiv) return;
@@ -426,6 +443,7 @@ function showStatus(message, isSuccess) {
     setTimeout(() => { statusDiv.style.display = 'none'; }, 5000);
 }
 
+// check if the GOOGLE_SHEETS_URL is configured or not. If not, it will show an alert to the user.
 async function sendToGoogleSheets(bookingData) {
     if (GOOGLE_SHEETS_URL === 'Make your exec link into here') {
         alert('⚠️ Google Sheets integration not configured yet!\n\nPlease follow the setup guide to get your Web App URL.');
@@ -454,7 +472,7 @@ async function sendToGoogleSheets(bookingData) {
 // ============================================
 // INITIALIZATION
 // ============================================
-
+// When the page loads, check if there's a pending booking enquiry in sessionStorage (from chatbot), if yes, fill the form with the data and scroll to the form
 document.addEventListener('DOMContentLoaded', function() {
 
     const pendingBooking = sessionStorage.getItem('pendingBooking');
