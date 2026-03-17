@@ -105,7 +105,7 @@ After authorization:
 
 ---
 
-## Step 6: Update the HTML File
+## Step 6: Update the Javascript File
 
 1. Open `chatbot.js` in a text editor (Notepad, VS Code, etc.)
 2. Find line 8 (or search for `GOOGLE_SHEETS_URL`)
@@ -167,7 +167,7 @@ Your booking system is now live. Every booking will automatically be saved to yo
 **Need to update the script?**
 - Make changes in Apps Script
 - Deploy → Manage deployments → Edit → New version → Deploy
-- URL stays the same (no need to update HTML)
+- URL stays the same (no need to update the file)
 
 ---
 
@@ -178,6 +178,7 @@ If you encounter any issues:
 2. Check the Troubleshooting section
 3. Ensure all steps were completed exactly as written
 
+For any other issues with the website or booking system, contact us.
 ---
 
 *Your booking data is automatically backed up by Google and accessible from any device.*
