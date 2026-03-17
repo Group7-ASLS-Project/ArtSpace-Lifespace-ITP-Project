@@ -5,7 +5,7 @@
 // ============================================
 // CONFIGURATION Please follow the Setup_Guide_for_Client.md to get the link
 // ============================================
-const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzn9SEoHm8Ckytdglo5BIcOjZxp02QaOzJd45ttUblbpSEdb9JBv8tkgAJ9qCZJRSA-1g/exec';
+const GOOGLE_SHEETS_URL = 'PASTE_YOUR_WEB_APP_URL_HERE';
 
 // ============================================
 // KNOWLEDGE BASE
