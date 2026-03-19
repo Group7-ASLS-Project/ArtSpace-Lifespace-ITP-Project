@@ -9,9 +9,9 @@
 // then paste the correct exec link for each venue below.
 // ============================================
 const VENUE_SHEETS_URLS = {
-    'the-island':    'https://script.google.com/macros/s/AKfycbyNjJrB2sMBs52360EEGUdokL2OonqrOIfaDmvjtQIKZe-Z6H_syxvpf0s7Wfm2mz7udQ/exec',
-    'arts-mansion':  'https://script.google.com/macros/s/AKfycbw50hyZymj9-85CviY3aj_HHiD3lXZEyyq9J2f2nXMLWqQMxra1FM6z4yH8qHFP-rVM/exec',
-    'sparks-bristol':'https://script.google.com/macros/s/AKfycbzp6Upjh0-mhzd-DY1Dx_M7rbhGqXySF0rACgh8HF4W4dsx8JdPagwynrUeXwqIbYe2wg/exec'
+    'the-island':    'PASTE_THE_ISLAND_EXEC_URL_HERE',
+    'arts-mansion':  'PASTE_ARTS_MANSION_EXEC_URL_HERE',
+    'sparks-bristol':'PASTE_SPARKS_BRISTOL_EXEC_URL_HERE'
 };
 
 // Helper: returns the correct Sheet URL for the selected venue
