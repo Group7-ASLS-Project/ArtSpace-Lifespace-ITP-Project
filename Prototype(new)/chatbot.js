@@ -3,9 +3,21 @@
 // ============================================
 
 // ============================================
-// CONFIGURATION Please follow the Setup_Guide_for_Client.md to get the link
+// CONFIGURATION — Per-Venue Google Sheets URLs
+// Each venue submits to its own separate Google Sheet.
+// Follow Setup_Guide_for_Client.md to generate each Web App URL,
+// then paste the correct exec link for each venue below.
 // ============================================
-const GOOGLE_SHEETS_URL = 'PASTE_YOUR_WEB_APP_URL_HERE';
+const VENUE_SHEETS_URLS = {
+    'the-island':    'https://script.google.com/macros/s/AKfycbyNjJrB2sMBs52360EEGUdokL2OonqrOIfaDmvjtQIKZe-Z6H_syxvpf0s7Wfm2mz7udQ/exec',
+    'arts-mansion':  'https://script.google.com/macros/s/AKfycbw50hyZymj9-85CviY3aj_HHiD3lXZEyyq9J2f2nXMLWqQMxra1FM6z4yH8qHFP-rVM/exec',
+    'sparks-bristol':'https://script.google.com/macros/s/AKfycbzp6Upjh0-mhzd-DY1Dx_M7rbhGqXySF0rACgh8HF4W4dsx8JdPagwynrUeXwqIbYe2wg/exec'
+};
+
+// Helper: returns the correct Sheet URL for the selected venue
+function getSheetUrlForVenue(venueId) {
+    return VENUE_SHEETS_URLS[venueId] || null;
+}
 
 // ============================================
 // KNOWLEDGE BASE
@@ -443,10 +455,15 @@ function showStatus(message, isSuccess) {
     setTimeout(() => { statusDiv.style.display = 'none'; }, 5000);
 }
 
-// check if the GOOGLE_SHEETS_URL is configured or not. If not, it will show an alert to the user.
-async function sendToGoogleSheets(bookingData) {
-    if (GOOGLE_SHEETS_URL === 'Make your exec link into here') {
-        alert('⚠️ Google Sheets integration not configured yet!\n\nPlease follow the setup guide to get your Web App URL.');
+// Routes the submission to the correct Google Sheet based on the selected venue.
+// venueId must be one of: 'the-island', 'arts-mansion', 'sparks-bristol'
+async function sendToGoogleSheets(bookingData, venueId) {
+    const sheetUrl = getSheetUrlForVenue(venueId);
+
+    // Guard: no URL configured for this venue yet
+    if (!sheetUrl || sheetUrl.startsWith('PASTE_')) {
+        const venueName = getVenueName(venueId);
+        alert(`⚠️ Google Sheets is not yet configured for "${venueName}".\n\nPlease follow the setup guide and paste the correct Web App URL into VENUE_SHEETS_URLS for this venue.`);
         return false;
     }
 
@@ -454,7 +471,7 @@ async function sendToGoogleSheets(bookingData) {
     if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending...'; }
 
     try {
-        await fetch(GOOGLE_SHEETS_URL, {
+        await fetch(sheetUrl, {
             method: 'POST',
             mode: 'no-cors',
             headers: { 'Content-Type': 'application/json' },
@@ -503,25 +520,26 @@ document.addEventListener('DOMContentLoaded', function() {
     if (form) {
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
+            const venueId = document.getElementById('building').value;
             const message = document.getElementById('message').value;
             const bookingDetails = parseBookingMessage(message);
             const bookingData = {
                 timestamp: new Date().toLocaleString(),
                 name: document.getElementById('name').value,
                 email: document.getElementById('email').value,
-                venue: getVenueName(document.getElementById('building').value),
+                venue: getVenueName(venueId),
                 eventType: bookingDetails.eventType,
                 attendees: bookingDetails.attendees,
                 preferredDate: bookingDetails.preferredDate,
                 message: message
             };
-            const success = await sendToGoogleSheets(bookingData);
-            if (success || GOOGLE_SHEETS_URL !== 'Make your exec link into here') {
-                showStatus(`✅ Thank you, ${bookingData.name}! Your booking enquiry has been submitted.`, true);
+            // Pass venueId so the correct Sheet URL is used
+            const success = await sendToGoogleSheets(bookingData, venueId);
+            if (success) {
+                showStatus(`✅ Thank you, ${bookingData.name}! Your enquiry for ${bookingData.venue} has been submitted.`, true);
                 document.getElementById('main-enquiry-form').reset();
-            } else {
-                showStatus('⚠️ Please configure the Google Sheets URL first. See setup guide.', false);
             }
+            // If not successful, sendToGoogleSheets already shows an alert
         });
     }
 

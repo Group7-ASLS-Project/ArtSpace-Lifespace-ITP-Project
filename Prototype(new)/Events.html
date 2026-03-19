@@ -121,8 +121,24 @@
         <li><a href="Enquire.html" class="btn btn--crimson" style="padding:5px 14px;font-size:0.78rem;"><span>Enquire</span></a></li>
       </ul>
     </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
+
+<div class="mobile-nav" id="mobile-nav" role="dialog" aria-modal="true" aria-label="Site navigation">
+  <div class="mobile-nav__backdrop" id="nav-backdrop"></div>
+  <div class="mobile-nav__panel">
+    <ul class="mobile-nav__links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="Venues.html">Venues</a></li>
+      <li><a href="Events.html" class="active">Events</a></li>
+      <li><a href="Community.html">Community</a></li>
+      <li><a href="Enquire.html">Enquire</a></li>
+    </ul>
+  </div>
+</div>
 
 <section class="page-hero">
   <div class="page-hero__bg" style="background-image:url('Sparks.jpg')"></div>
@@ -140,7 +156,6 @@
     <div class="section-label"><span>Upcoming</span></div>
     <h2 style="font-size:1.5rem;margin-bottom:6px;">Featured Events</h2>
     <p style="color:var(--mid);margin-bottom:24px;">Book your spot at one of our upcoming events.</p>
-
     <div class="grid-3" style="max-width:420px;">
       <div class="event-card">
         <div class="event-card__image" style="background-image:url('Sparks.jpg')"></div>
@@ -151,13 +166,10 @@
           </div>
           <h3>Circus Arts Evening</h3>
           <p>Join us for an evening of spectacular circus performance at one of our Bristol venues. All skill levels welcome to watch and participate.</p>
-          <a href="https://hdfst.uk/e149504" class="ticket-link" target="_blank" rel="noopener">
-            🎟 Get Tickets on Headfirst
-          </a>
+          <a href="https://hdfst.uk/e149504" class="ticket-link" target="_blank" rel="noopener">🎟 Get Tickets on Headfirst</a>
         </div>
       </div>
     </div>
-
     <div style="margin-top:30px;padding:20px;background:var(--surface);border-radius:var(--radius-md);border:1px solid var(--border);text-align:center;">
       <h3 style="margin-bottom:7px;">Want to host an event at our venues?</h3>
       <p style="color:var(--mid);margin-bottom:14px;max-width:480px;margin-left:auto;margin-right:auto;">We'd love to hear about your event idea. Our team can help match you with the perfect space.</p>
@@ -167,7 +179,6 @@
 </section>
 
 <div class="chatbot-fab" onclick="toggleChat()" aria-label="Open chatbot">💬</div>
-
 <div id="chat-window" style="display:none;">
   <div class="chat-header">
     <span>💬 ASLS Assistant</span>
@@ -201,13 +212,50 @@
   </div>
 </footer>
 
-<!-- Accessibility Controls -->  
 <script>
+(function () {
+  var toggle    = document.getElementById('nav-toggle');
+  var mobileNav = document.getElementById('mobile-nav');
+  var backdrop  = document.getElementById('nav-backdrop');
+  var panel     = mobileNav.querySelector('.mobile-nav__panel');
+  function getHeaderBottom() {
+    var header = document.querySelector('.site-header');
+    return header ? Math.round(header.getBoundingClientRect().bottom) : 84;
+  }
+  function positionPanel() {
+    var bottom = getHeaderBottom();
+    panel.style.top    = bottom + 'px';
+    panel.style.height = 'calc(100vh - ' + bottom + 'px)';
+    backdrop.style.top = bottom + 'px';
+  }
+  function openNav() {
+    positionPanel();
+    mobileNav.classList.add('open');
+    toggle.classList.add('open');
+    toggle.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeNav() {
+    mobileNav.classList.remove('open');
+    toggle.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+  toggle.addEventListener('click', function () {
+    mobileNav.classList.contains('open') ? closeNav() : openNav();
+  });
+  backdrop.addEventListener('click', closeNav);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && mobileNav.classList.contains('open')) closeNav();
+  });
+  window.addEventListener('resize', function () {
+    if (mobileNav.classList.contains('open')) positionPanel();
+  });
+}());
 document.getElementById('high-contrast').addEventListener('click', function() {
   document.body.classList.toggle('high-contrast');
   this.textContent = document.body.classList.contains('high-contrast') ? '◑ Standard' : '◑ High Contrast';
 });
-
 document.getElementById('increase-text').addEventListener('click', function() {
   document.body.classList.toggle('large-text');
   this.textContent = document.body.classList.contains('large-text') ? 'Aa Normal Text' : 'Aa Larger Text';

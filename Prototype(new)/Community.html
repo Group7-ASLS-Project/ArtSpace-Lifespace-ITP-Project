@@ -6,8 +6,6 @@
 <title>ArtSpace LifeSpace | Community</title>
 <link rel="stylesheet" href="styles.css">
 <style>
-
-/* ── Animated gallery band — uses real Sparks photo ── */
 .gallery-band {
   position: relative;
   overflow: hidden;
@@ -48,10 +46,18 @@
   padding: 32px 0;
 }
 
-.gallery-band__content h2 { color: #fff; font-size: 1.4rem; margin-bottom: 8px; }
-.gallery-band__content p  { color: rgba(255,255,255,0.85); max-width: 600px; line-height: 1.7; }
+.gallery-band__content h2 {
+  color: #fff;
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+}
 
-/* ── Pillar list ── */
+.gallery-band__content p {
+  color: rgba(255,255,255,0.85);
+  max-width: 600px;
+  line-height: 1.7;
+}
+
 .pillar-list {
   list-style: none;
   display: flex;
@@ -80,7 +86,6 @@
   flex-shrink: 0;
 }
 
-/* ── Two-column layout ── */
 .two-col {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -88,7 +93,6 @@
   align-items: start;
 }
 
-/* ── History map feature ── */
 .history-feature {
   background: var(--black);
   padding: 38px 0;
@@ -101,7 +105,9 @@
   align-items: center;
 }
 
-.history-feature__text { color: rgba(255,255,255,0.75); }
+.history-feature__text {
+  color: rgba(255,255,255,0.75);
+}
 
 .history-feature__text h2 {
   color: #fff;
@@ -115,7 +121,9 @@
   font-size: 0.84rem;
 }
 
-.history-feature__text p:last-of-type { margin-bottom: 18px; }
+.history-feature__text p:last-of-type {
+  margin-bottom: 18px;
+}
 
 .history-feature__image {
   border-radius: var(--radius-lg);
@@ -144,7 +152,6 @@
   font-style: italic;
 }
 
-/* ── Lightbox for map ── */
 .lightbox-overlay {
   display: none;
   position: fixed;
@@ -157,7 +164,9 @@
   cursor: zoom-out;
 }
 
-.lightbox-overlay.open { display: flex; }
+.lightbox-overlay.open {
+  display: flex;
+}
 
 .lightbox-overlay img {
   max-width: 100%;
@@ -181,12 +190,22 @@
   line-height: 1;
 }
 
-.lightbox-close:hover { opacity: 1; }
+.lightbox-close:hover {
+  opacity: 1;
+}
 
 @media (max-width: 768px) {
-  .two-col { grid-template-columns: 1fr; gap: 32px; }
-  .history-feature__inner { grid-template-columns: 1fr; gap: 32px; }
-  .history-feature { padding: 30px 0; }
+  .two-col {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .history-feature__inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .history-feature {
+    padding: 30px 0;
+  }
 }
 </style>
 </head>
@@ -217,10 +236,25 @@
         <li><a href="Enquire.html" class="btn btn--crimson" style="padding:5px 14px;font-size:0.78rem;"><span>Enquire</span></a></li>
       </ul>
     </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
-<!-- Hero — The Island panorama as bg -->
+<div class="mobile-nav" id="mobile-nav" role="dialog" aria-modal="true" aria-label="Site navigation">
+  <div class="mobile-nav__backdrop" id="nav-backdrop"></div>
+  <div class="mobile-nav__panel">
+    <ul class="mobile-nav__links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="Venues.html">Venues</a></li>
+      <li><a href="Events.html">Events</a></li>
+      <li><a href="Community.html" class="active">Community</a></li>
+      <li><a href="Enquire.html">Enquire</a></li>
+    </ul>
+  </div>
+</div>
+
 <section class="page-hero">
   <div class="page-hero__bg" style="background-image:url('IslandPanorama.PNG')"></div>
   <div class="container">
@@ -232,7 +266,6 @@
   </div>
 </section>
 
-<!-- Animated colour band — Sparks photo underneath -->
 <div class="gallery-band">
   <div class="gallery-band__bg"></div>
   <div class="gallery-band__wash"></div>
@@ -242,11 +275,9 @@
   </div>
 </div>
 
-<!-- What We Offer + Mission -->
 <section class="section" style="background:var(--surface);">
   <div class="container">
     <div class="two-col">
-
       <div>
         <div class="section-label"><span>What We Offer</span></div>
         <h2 style="font-size:1.4rem;margin-bottom:10px;">How We Support the Creative Community</h2>
@@ -260,7 +291,6 @@
           <li>Consultancy and creative solutions for community-centred development</li>
         </ul>
       </div>
-
       <div>
         <div class="section-label"><span>Our Mission</span></div>
         <h2 style="font-size:1.4rem;margin-bottom:10px;">Creative Placemakers for Bristol</h2>
@@ -273,15 +303,12 @@
           <li>Strengthen communities through creativity and culture</li>
         </ul>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- History map feature — LifespaceTotal.jpg properly showcased -->
 <section class="history-feature">
   <div class="container history-feature__inner">
-
     <div class="history-feature__text">
       <div class="section-label"><span style="color:rgba(231,210,19,0.7);">Our History</span></div>
       <h2>A Journey Through Time and Artspace</h2>
@@ -290,18 +317,15 @@
       <p>We have over 20 years of experience in the 'Meanwhile space' sector — revitalising neglected buildings so they benefit artists, communities and neighbourhoods.</p>
       <a href="Enquire.html" class="btn btn--gold">Get Involved →</a>
     </div>
-
     <div>
       <div class="history-feature__image" onclick="openLightbox()">
         <img src="LifespaceTotal.jpg" alt="Illustrated map of all ArtSpace LifeSpace venues across Bristol history">
       </div>
       <p class="history-feature__caption">Click to view full map · Illustrated by ArtSpace LifeSpace, Bristol 2020</p>
     </div>
-
   </div>
 </section>
 
-<!-- Accessibility band -->
 <section class="section section--dark" style="padding:32px 0;">
   <div class="container">
     <div class="section-label"><span style="color:rgba(231,210,19,0.7);">Accessibility</span></div>
@@ -311,15 +335,12 @@
   </div>
 </section>
 
-<!-- Lightbox for history map -->
 <div class="lightbox-overlay" id="map-lightbox" onclick="closeLightbox()">
   <button class="lightbox-close" onclick="closeLightbox()">✕</button>
   <img src="LifespaceTotal.jpg" alt="Full ArtSpace LifeSpace venue history map" onclick="event.stopPropagation()">
 </div>
 
-<!-- Chatbot -->
 <div class="chatbot-fab" onclick="toggleChat()" aria-label="Open chatbot">💬</div>
-
 <div id="chat-window" style="display:none;">
   <div class="chat-header">
     <span>💬 ASLS Assistant</span>
@@ -332,7 +353,6 @@
   </div>
 </div>
 
-<!-- Footer -->
 <footer class="site-footer">
   <div class="container">
     <div class="site-footer__inner">
@@ -354,8 +374,46 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  // Accessibility Controls
+<script>
+(function () {
+  var toggle    = document.getElementById('nav-toggle');
+  var mobileNav = document.getElementById('mobile-nav');
+  var backdrop  = document.getElementById('nav-backdrop');
+  var panel     = mobileNav.querySelector('.mobile-nav__panel');
+  function getHeaderBottom() {
+    var header = document.querySelector('.site-header');
+    return header ? Math.round(header.getBoundingClientRect().bottom) : 84;
+  }
+  function positionPanel() {
+    var bottom = getHeaderBottom();
+    panel.style.top    = bottom + 'px';
+    panel.style.height = 'calc(100vh - ' + bottom + 'px)';
+    backdrop.style.top = bottom + 'px';
+  }
+  function openNav() {
+    positionPanel();
+    mobileNav.classList.add('open');
+    toggle.classList.add('open');
+    toggle.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeNav() {
+    mobileNav.classList.remove('open');
+    toggle.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+  toggle.addEventListener('click', function () {
+    mobileNav.classList.contains('open') ? closeNav() : openNav();
+  });
+  backdrop.addEventListener('click', closeNav);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && mobileNav.classList.contains('open')) closeNav();
+  });
+  window.addEventListener('resize', function () {
+    if (mobileNav.classList.contains('open')) positionPanel();
+  });
+}());
 document.getElementById('high-contrast').addEventListener('click', function() {
   document.body.classList.toggle('high-contrast');
   this.textContent = document.body.classList.contains('high-contrast') ? '◑ Standard' : '◑ High Contrast';
@@ -364,20 +422,14 @@ document.getElementById('increase-text').addEventListener('click', function() {
   document.body.classList.toggle('large-text');
   this.textContent = document.body.classList.contains('large-text') ? 'Aa Normal Text' : 'Aa Larger Text';
 });
-
-//when the map image is clicked, the lightbox will open and show the full map (line 148)
 function openLightbox() {
   document.getElementById('map-lightbox').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
-
-//when the lightbox is clicked (outside the image), it will close the lightbox and restore the scroll (line 148)
 function closeLightbox() {
   document.getElementById('map-lightbox').classList.remove('open');
   document.body.style.overflow = '';
 }
-
-// Also close lightbox when pressing the Escape key
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') closeLightbox();
 });

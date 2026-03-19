@@ -6,8 +6,6 @@
 <title>ArtSpace LifeSpace | Venues</title>
 <link rel="stylesheet" href="styles.css">
 <style>
-
-/* ── Venue cards (top-level clickable) ── */
 .venues-overview {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -39,7 +37,9 @@
   transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
 }
 
-.venue-card:hover .venue-card__bg { transform: scale(1.05); }
+.venue-card:hover .venue-card__bg {
+  transform: scale(1.05);
+}
 
 .venue-card__overlay {
   position: absolute;
@@ -111,7 +111,6 @@
   transform: rotate(90deg);
 }
 
-/* ── Dropdown detail panel ── */
 .venue-detail-panel {
   display: none;
   background: #fff;
@@ -120,23 +119,21 @@
   box-shadow: var(--shadow-md);
   overflow: hidden;
   margin-bottom: 12px;
-
-  /* Animate open */
   animation: slideDown 0.32s cubic-bezier(0.4,0,0.2,1);
 }
 
-.venue-detail-panel.open { display: block; }
+.venue-detail-panel.open {
+  display: block;
+}
 
 @keyframes slideDown {
   from { opacity: 0; transform: translateY(-12px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ── Panel header ── */
 .panel-header {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0;
 }
 
 .panel-header__image {
@@ -145,7 +142,8 @@
 }
 
 .panel-header__image img {
-  width: 100%; height: 100%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   display: block;
 }
@@ -194,7 +192,6 @@
   margin: 0;
 }
 
-/* ── Meta strip ── */
 .panel-meta {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -207,7 +204,9 @@
   border-right: 1px solid rgba(255,255,255,0.1);
 }
 
-.panel-meta__cell:last-child { border-right: none; }
+.panel-meta__cell:last-child {
+  border-right: none;
+}
 
 .panel-meta__label {
   font-size: 0.58rem;
@@ -224,11 +223,17 @@
   line-height: 1.55;
 }
 
-.panel-meta__value a { color: var(--gold); }
-.panel-meta__value a:hover { text-decoration: underline; }
+.panel-meta__value a {
+  color: var(--gold);
+}
 
-/* ── Spaces accordion inside panel ── */
-.panel-body { padding: 14px 18px; }
+.panel-meta__value a:hover {
+  text-decoration: underline;
+}
+
+.panel-body {
+  padding: 14px 18px;
+}
 
 .panel-body__heading {
   font-size: 0.92rem;
@@ -238,10 +243,16 @@
   gap: 10px;
 }
 
-.panel-body__heading span { color: var(--crimson); }
+.panel-body__heading span {
+  color: var(--crimson);
+}
 
-/* ── Space accordion items ── */
-.space-accordion { display: flex; flex-direction: column; gap: 6px; margin-bottom: 18px; }
+.space-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 18px;
+}
 
 .space-item {
   border: 1px solid var(--border);
@@ -250,7 +261,9 @@
   transition: border-color 0.2s;
 }
 
-.space-item.open { border-color: rgba(214,47,99,0.4); }
+.space-item.open {
+  border-color: rgba(214,47,99,0.4);
+}
 
 .space-item__trigger {
   width: 100%;
@@ -266,8 +279,13 @@
   font-family: 'DM Sans', sans-serif;
 }
 
-.space-item__trigger:hover { background: rgba(214,47,99,0.06); }
-.space-item.open .space-item__trigger { background: rgba(214,47,99,0.08); }
+.space-item__trigger:hover {
+  background: rgba(214,47,99,0.06);
+}
+
+.space-item.open .space-item__trigger {
+  background: rgba(214,47,99,0.08);
+}
 
 .space-item__icon {
   font-size: 1rem;
@@ -291,7 +309,9 @@
   flex-shrink: 0;
 }
 
-.space-item.open .space-item__chevron { transform: rotate(180deg); }
+.space-item.open .space-item__chevron {
+  transform: rotate(180deg);
+}
 
 .space-item__body {
   display: none;
@@ -300,7 +320,9 @@
   animation: fadeIn 0.2s ease;
 }
 
-.space-item.open .space-item__body { display: block; }
+.space-item.open .space-item__body {
+  display: block;
+}
 
 @keyframes fadeIn {
   from { opacity: 0; }
@@ -327,9 +349,11 @@
   text-decoration: none;
 }
 
-.space-item__enquire:hover { color: var(--crimson-dark); border-color: var(--crimson-dark); }
+.space-item__enquire:hover {
+  color: var(--crimson-dark);
+  border-color: var(--crimson-dark);
+}
 
-/* ── Quote ── */
 .panel-quote {
   background: var(--black);
   border-left: 4px solid var(--gold);
@@ -354,7 +378,6 @@
   font-weight: 600;
 }
 
-/* ── Accessibility row ── */
 .access-callout {
   background: rgba(214,47,99,0.05);
   border: 1px solid rgba(214,47,99,0.18);
@@ -368,10 +391,15 @@
   line-height: 1.65;
 }
 
-.access-callout__icon { font-size: 1.2rem; flex-shrink: 0; }
-.access-callout strong { color: var(--black); }
+.access-callout__icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
 
-/* ── Panel enquire button ── */
+.access-callout strong {
+  color: var(--black);
+}
+
 .panel-enquire-row {
   display: flex;
   justify-content: flex-end;
@@ -382,23 +410,52 @@
   flex-wrap: wrap;
 }
 
-/* ── CTA strip ── */
-.enquire-strip { background: var(--crimson); padding: 32px 0; text-align: center; }
-.enquire-strip h2 { color: #fff; margin-bottom: 10px; }
-.enquire-strip p { color: rgba(255,255,255,0.82); margin-bottom: 24px; }
+.enquire-strip {
+  background: var(--crimson);
+  padding: 32px 0;
+  text-align: center;
+}
+
+.enquire-strip h2 {
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.enquire-strip p {
+  color: rgba(255,255,255,0.82);
+  margin-bottom: 24px;
+}
 
 @media (max-width: 900px) {
-  .panel-header { grid-template-columns: 1fr; }
-  .panel-meta { grid-template-columns: 1fr; }
-  .panel-meta__cell { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); padding: 12px 0; }
-  .panel-header__info { padding: 16px; }
-  .panel-body { padding: 16px; }
-  .space-item__body { padding-left: 20px; }
-  .panel-enquire-row { padding: 10px 16px 16px; }
+  .panel-header {
+    grid-template-columns: 1fr;
+  }
+  .panel-meta {
+    grid-template-columns: 1fr;
+  }
+  .panel-meta__cell {
+    border-right: none;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding: 12px 0;
+  }
+  .panel-header__info {
+    padding: 16px;
+  }
+  .panel-body {
+    padding: 16px;
+  }
+  .space-item__body {
+    padding-left: 20px;
+  }
+  .panel-enquire-row {
+    padding: 10px 16px 16px;
+  }
 }
 
 @media (max-width: 540px) {
-  .venues-overview { grid-template-columns: 1fr; }
+  .venues-overview {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
 </head>
@@ -429,8 +486,24 @@
         <li><a href="Enquire.html" class="btn btn--crimson" style="padding:5px 14px;font-size:0.78rem;"><span>Enquire</span></a></li>
       </ul>
     </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
+
+<div class="mobile-nav" id="mobile-nav" role="dialog" aria-modal="true" aria-label="Site navigation">
+  <div class="mobile-nav__backdrop" id="nav-backdrop"></div>
+  <div class="mobile-nav__panel">
+    <ul class="mobile-nav__links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="Venues.html" class="active">Venues</a></li>
+      <li><a href="Events.html">Events</a></li>
+      <li><a href="Community.html">Community</a></li>
+      <li><a href="Enquire.html">Enquire</a></li>
+    </ul>
+  </div>
+</div>
 
 <section class="page-hero">
   <div class="page-hero__bg" style="background-image:url('IslandPanorama.PNG')"></div>
@@ -443,13 +516,8 @@
   </div>
 </section>
 
-
 <div class="container">
-
-  <!-- ── Three venue cards ── -->
   <div class="venues-overview">
-
-    <!-- THE ISLAND -->
     <div class="venue-card" id="card-island" onclick="toggleVenue('island')">
       <div class="venue-card__bg" style="background-image:url('IslandPanorama.PNG')"></div>
       <div class="venue-card__overlay"></div>
@@ -457,14 +525,9 @@
         <span class="venue-card__tag">City Centre · Bristol</span>
         <div class="venue-card__name">The Island</div>
         <div class="venue-card__teaser">Former police station turned arts complex — 100+ resident artists, circus, dance, gallery and more.</div>
-        <div class="venue-card__hint">
-          <span>Explore spaces &amp; details</span>
-          <span class="arrow">▶</span>
-        </div>
+        <div class="venue-card__hint"><span>Explore spaces &amp; details</span><span class="arrow">▶</span></div>
       </div>
     </div>
-
-    <!-- ARTS MANSION -->
     <div class="venue-card" id="card-mansion" onclick="toggleVenue('mansion')">
       <div class="venue-card__bg" style="background-image:url('ArtsMansion.PNG')"></div>
       <div class="venue-card__overlay"></div>
@@ -472,355 +535,151 @@
         <span class="venue-card__tag">North Somerset · Ashton Court</span>
         <div class="venue-card__name">Arts Mansion</div>
         <div class="venue-card__teaser">Historic Ashton Court Mansion — the Great Hall, Music Room and Georgian lounges for hire.</div>
-        <div class="venue-card__hint">
-          <span>Explore spaces &amp; details</span>
-          <span class="arrow">▶</span>
-        </div>
+        <div class="venue-card__hint"><span>Explore spaces &amp; details</span><span class="arrow">▶</span></div>
       </div>
     </div>
-
-    <!-- SPARKS BRISTOL -->
     <div class="venue-card" id="card-sparks" onclick="toggleVenue('sparks')">
       <div class="venue-card__bg" style="background-image:url('Sparks.jpg')"></div>
       <div class="venue-card__overlay"></div>
       <div class="venue-card__body">
         <span class="venue-card__tag">Broadmead · Bristol</span>
         <div class="venue-card__name">Sparks Bristol</div>
-        <div class="venue-card__teaser">Art and sustainability hub in the former M&S building — studios, event spaces and market stalls.</div>
-        <div class="venue-card__hint">
-          <span>Explore spaces &amp; details</span>
-          <span class="arrow">▶</span>
-        </div>
+        <div class="venue-card__teaser">Art and sustainability hub in the former M&amp;S building — studios, event spaces and market stalls.</div>
+        <div class="venue-card__hint"><span>Explore spaces &amp; details</span><span class="arrow">▶</span></div>
       </div>
     </div>
+  </div>
 
-  </div><!-- /venues-overview -->
-
-
-  <!-- ════════════════════════════════
-       DETAIL PANEL: THE ISLAND
-       ════════════════════════════════ -->
+  <!-- THE ISLAND -->
   <div class="venue-detail-panel" id="panel-island">
-
     <div class="panel-header">
-      <div class="panel-header__image">
-        <img src="IslandPanorama.PNG" alt="The Island, Bristol">
-      </div>
+      <div class="panel-header__image"><img src="IslandPanorama.PNG" alt="The Island, Bristol"></div>
       <div class="panel-header__info">
         <span class="panel-header__badge">City Centre · Bristol</span>
         <h2 class="panel-header__title">The Island</h2>
         <p class="panel-header__tagline">A community arts venue in the Old Bridewell Police Station</p>
         <p class="panel-header__desc">Based in the Old Bridewell Police Station in Bristol city centre, The Island hosts over 100 resident artists with a Circus Training Space, music studios, Dance Studios and a beautiful art gallery.</p>
         <div class="panel-meta">
-          <div class="panel-meta__cell">
-            <div class="panel-meta__label">Address</div>
-            <div class="panel-meta__value">Nelson Street<br>Bristol, BS1 2BE<br><a href="https://g.page/theislandbristol" target="_blank" rel="noopener">Get directions →</a></div>
-          </div>
-          <div class="panel-meta__cell">
-            <div class="panel-meta__label">Opening Times</div>
-            <div class="panel-meta__value">Mon – Fri: 10am – 10pm<br>Weekends: 10am – 5pm</div>
-          </div>
-          <div class="panel-meta__cell">
-            <div class="panel-meta__label">Contact</div>
-            <div class="panel-meta__value"><a href="tel:01173763457">0117 376 3457</a><br><a href="mailto:info@theisland.uk">info@theisland.uk</a></div>
-          </div>
+          <div class="panel-meta__cell"><div class="panel-meta__label">Address</div><div class="panel-meta__value">Nelson Street<br>Bristol, BS1 2BE<br><a href="https://g.page/theislandbristol" target="_blank" rel="noopener">Get directions →</a></div></div>
+          <div class="panel-meta__cell"><div class="panel-meta__label">Opening Times</div><div class="panel-meta__value">Mon – Fri: 10am – 10pm<br>Weekends: 10am – 5pm</div></div>
+          <div class="panel-meta__cell"><div class="panel-meta__label">Contact</div><div class="panel-meta__value"><a href="tel:01173763457">0117 376 3457</a><br><a href="mailto:info@theisland.uk">info@theisland.uk</a></div></div>
         </div>
       </div>
     </div>
-
     <div class="panel-body">
       <div class="panel-body__heading">Spaces at <span>The Island</span> — click a space to expand</div>
-
       <div class="space-accordion">
-
         <div class="space-item" id="space-dance">
-          <button class="space-item__trigger" onclick="toggleSpace('dance')">
-            <span class="space-item__icon">💃</span>
-            <span class="space-item__name">Dance Space</span>
-            <span class="space-item__chevron">▼</span>
-          </button>
-          <div class="space-item__body">
-            <p class="space-item__desc">The Dance Space runs a wide variety of classes and training sessions as well as being available for private hire. A versatile, sprung-floor studio ideal for rehearsals and performances of all dance styles.</p>
-            <a href="Enquire.html" class="space-item__enquire">Enquire about hire →</a>
-          </div>
+          <button class="space-item__trigger" onclick="toggleSpace('dance')"><span class="space-item__icon">💃</span><span class="space-item__name">Dance Space</span><span class="space-item__chevron">▼</span></button>
+          <div class="space-item__body"><p class="space-item__desc">The Dance Space runs a wide variety of classes and training sessions as well as being available for private hire. A versatile, sprung-floor studio ideal for rehearsals and performances of all dance styles.</p><a href="Enquire.html" class="space-item__enquire">Enquire about hire →</a></div>
         </div>
-
         <div class="space-item" id="space-circus">
-          <button class="space-item__trigger" onclick="toggleSpace('circus')">
-            <span class="space-item__icon">🎪</span>
-            <span class="space-item__name">Circus Space</span>
-            <span class="space-item__chevron">▼</span>
-          </button>
-          <div class="space-item__body">
-            <p class="space-item__desc">The Island Circus Training Space offers classes in silks, rope, aerial hoop, trapeze and acro yoga. A fully rigged aerial space also available for private hire between scheduled sessions.</p>
-            <a href="Enquire.html" class="space-item__enquire">Enquire about hire →</a>
-          </div>
+          <button class="space-item__trigger" onclick="toggleSpace('circus')"><span class="space-item__icon">🎪</span><span class="space-item__name">Circus Space</span><span class="space-item__chevron">▼</span></button>
+          <div class="space-item__body"><p class="space-item__desc">The Island Circus Training Space offers classes in silks, rope, aerial hoop, trapeze and acro yoga. A fully rigged aerial space also available for private hire between scheduled sessions.</p><a href="Enquire.html" class="space-item__enquire">Enquire about hire →</a></div>
         </div>
-
         <div class="space-item" id="space-gallery">
-          <button class="space-item__trigger" onclick="toggleSpace('gallery')">
-            <span class="space-item__icon">🖼️</span>
-            <span class="space-item__name">Gallery Space</span>
-            <span class="space-item__chevron">▼</span>
-          </button>
-          <div class="space-item__body">
-            <p class="space-item__desc">A beautiful large white gallery space with a lantern ceiling and ancillary room on the first floor. Perfect for exhibitions, private views, launches and showcases of all sizes.</p>
-            <a href="Enquire.html" class="space-item__enquire">Enquire about hire →</a>
-          </div>
+          <button class="space-item__trigger" onclick="toggleSpace('gallery')"><span class="space-item__icon">🖼️</span><span class="space-item__name">Gallery Space</span><span class="space-item__chevron">▼</span></button>
+          <div class="space-item__body"><p class="space-item__desc">A beautiful large white gallery space with a lantern ceiling and ancillary room on the first floor. Perfect for exhibitions, private views, launches and showcases of all sizes.</p><a href="Enquire.html" class="space-item__enquire">Enquire about hire →</a></div>
         </div>
-
         <div class="space-item" id="space-venue">
-          <button class="space-item__trigger" onclick="toggleSpace('venue')">
-            <span class="space-item__icon">🎵</span>
-            <span class="space-item__name">The Island Venue</span>
-            <span class="space-item__chevron">▼</span>
-          </button>
-          <div class="space-item__body">
-            <p class="space-item__desc">A licensed event space available for immersive performances, talks, exhibitions and nightclub events. Flexible layout with in-house sound and lighting infrastructure.</p>
-            <a href="Enquire.html" class="space-item__enquire">Enquire about hire →</a>
-          </div>
+          <button class="space-item__trigger" onclick="toggleSpace('venue')"><span class="space-item__icon">🎵</span><span class="space-item__name">The Island Venue</span><span class="space-item__chevron">▼</span></button>
+          <div class="space-item__body"><p class="space-item__desc">A licensed event space available for immersive performances, talks, exhibitions and nightclub events. Flexible layout with in-house sound and lighting infrastructure.</p><a href="Enquire.html" class="space-item__enquire">Enquire about hire →</a></div>
         </div>
-
         <div class="space-item" id="space-studios">
-          <button class="space-item__trigger" onclick="toggleSpace('studios')">
-            <span class="space-item__icon">🎨</span>
-            <span class="space-item__name">Artist Studios</span>
-            <span class="space-item__chevron">▼</span>
-          </button>
-          <div class="space-item__body">
-            <p class="space-item__desc">Work alongside like-minded creatives in our artist studios. Over 100 resident musicians and artists call The Island home. Affordable studio spaces available — enquire to join the community.</p>
-            <a href="Enquire.html" class="space-item__enquire">Enquire about studios →</a>
-          </div>
+          <button class="space-item__trigger" onclick="toggleSpace('studios')"><span class="space-item__icon">🎨</span><span class="space-item__name">Artist Studios</span><span class="space-item__chevron">▼</span></button>
+          <div class="space-item__body"><p class="space-item__desc">Work alongside like-minded creatives in our artist studios. Over 100 resident musicians and artists call The Island home. Affordable studio spaces available — enquire to join the community.</p><a href="Enquire.html" class="space-item__enquire">Enquire about studios →</a></div>
         </div>
-
         <div class="space-item" id="space-sewing">
-          <button class="space-item__trigger" onclick="toggleSpace('sewing')">
-            <span class="space-item__icon">🧵</span>
-            <span class="space-item__name">The Sewing Room</span>
-            <span class="space-item__chevron">▼</span>
-          </button>
-          <div class="space-item__body">
-            <p class="space-item__desc">A fully equipped sewing studio for beginner and professional sewers alike. Ideal for fashion, textiles and costume projects. Equipment available for community use and regular hire.</p>
-            <a href="Enquire.html" class="space-item__enquire">Enquire about hire →</a>
-          </div>
+          <button class="space-item__trigger" onclick="toggleSpace('sewing')"><span class="space-item__icon">🧵</span><span class="space-item__name">The Sewing Room</span><span class="space-item__chevron">▼</span></button>
+          <div class="space-item__body"><p class="space-item__desc">A fully equipped sewing studio for beginner and professional sewers alike. Ideal for fashion, textiles and costume projects. Equipment available for community use and regular hire.</p><a href="Enquire.html" class="space-item__enquire">Enquire about hire →</a></div>
         </div>
-
-      </div><!-- /space-accordion -->
-
-      <div class="access-callout">
-        <span class="access-callout__icon">♿</span>
-        <div><strong>Accessibility:</strong> For full access information please download our accessibility document or contact us directly. We're committed to making The Island welcoming to all visitors — please mention your requirements when enquiring.</div>
       </div>
+      <div class="access-callout"><span class="access-callout__icon">♿</span><div><strong>Accessibility:</strong> For full access information please download our accessibility document or contact us directly. We're committed to making The Island welcoming to all visitors — please mention your requirements when enquiring.</div></div>
     </div>
+    <div class="panel-enquire-row"><a href="Enquire.html" class="btn btn--crimson">Enquire About The Island →</a></div>
+  </div>
 
-    <div class="panel-enquire-row">
-      <a href="Enquire.html" class="btn btn--crimson">Enquire About The Island →</a>
-    </div>
-
-  </div><!-- /panel-island -->
-
-
-  <!-- ════════════════════════════════
-       DETAIL PANEL: ARTS MANSION
-       ════════════════════════════════ -->
+  <!-- ARTS MANSION -->
   <div class="venue-detail-panel" id="panel-mansion">
-
     <div class="panel-header">
-      <div class="panel-header__image">
-        <img src="ArtsMansion.PNG" alt="Arts Mansion, Ashton Court Estate">
-      </div>
+      <div class="panel-header__image"><img src="ArtsMansion.PNG" alt="Arts Mansion, Ashton Court Estate"></div>
       <div class="panel-header__info">
         <span class="panel-header__badge">North Somerset · Ashton Court Estate</span>
         <h2 class="panel-header__title">Arts Mansion</h2>
         <p class="panel-header__tagline">An inclusive multi-use arts venue for Bristol and North Somerset</p>
-        <p class="panel-header__desc">Since May 2018, Artspace Lifespace has run the magnificent Ashton Court Mansion. Our vision is an inclusive multi-use arts venue for art, theatre, performance and community activities — hosting exhibitions, workshops, family events and dance rehearsals.</p>
+        <p class="panel-header__desc">Since May 2018, Artspace Lifespace has run the magnificent Ashton Court Mansion. Our vision is an inclusive multi-use arts venue for art, theatre, performance and community activities.</p>
         <div class="panel-meta">
-          <div class="panel-meta__cell">
-            <div class="panel-meta__label">Address</div>
-            <div class="panel-meta__value">Ashton Court Estate<br>Long Ashton, BS41 9JN<br><a href="https://goo.gl/maps/e65XWZtWk4oavSJS9" target="_blank" rel="noopener">Get directions →</a></div>
-          </div>
-          <div class="panel-meta__cell">
-            <div class="panel-meta__label">Viewings</div>
-            <div class="panel-meta__value">Mon – Fri: Email to book<br>Weekends: Email to book<br><em style="font-size:0.75rem;opacity:0.7;">Entrance: West Lawn Courtyard</em></div>
-          </div>
-          <div class="panel-meta__cell">
-            <div class="panel-meta__label">Contact</div>
-            <div class="panel-meta__value"><a href="mailto:artsmansion@artspace.uk">artsmansion@artspace.uk</a><br><em style="font-size:0.75rem;opacity:0.7;">Please email for all enquiries</em></div>
-          </div>
+          <div class="panel-meta__cell"><div class="panel-meta__label">Address</div><div class="panel-meta__value">Ashton Court Estate<br>Long Ashton, BS41 9JN<br><a href="https://goo.gl/maps/e65XWZtWk4oavSJS9" target="_blank" rel="noopener">Get directions →</a></div></div>
+          <div class="panel-meta__cell"><div class="panel-meta__label">Viewings</div><div class="panel-meta__value">Mon – Fri: Email to book<br>Weekends: Email to book<br><em style="font-size:0.75rem;opacity:0.7;">Entrance: West Lawn Courtyard</em></div></div>
+          <div class="panel-meta__cell"><div class="panel-meta__label">Contact</div><div class="panel-meta__value"><a href="mailto:artsmansion@artspace.uk">artsmansion@artspace.uk</a><br><em style="font-size:0.75rem;opacity:0.7;">Please email for all enquiries</em></div></div>
         </div>
       </div>
     </div>
-
     <div class="panel-body">
-
-      <div class="panel-quote">
-        <blockquote>"We are delighted to be working with Artspace Lifespace to open up the mansion house to the public while decisions are made on its long term future. We know how important the mansion house is to the people of Bristol, and it will be fantastic to see it full of life again."</blockquote>
-        <cite>— Cllr Asher Craig</cite>
-      </div>
-
+      <div class="panel-quote"><blockquote>"We are delighted to be working with Artspace Lifespace to open up the mansion house to the public while decisions are made on its long term future."</blockquote><cite>— Cllr Asher Craig</cite></div>
       <div class="panel-body__heading">Spaces at <span>Arts Mansion</span> — click a space to expand</div>
-
       <div class="space-accordion">
-
         <div class="space-item" id="space-musicroom">
-          <button class="space-item__trigger" onclick="toggleSpace('musicroom')">
-            <span class="space-item__icon">🎼</span>
-            <span class="space-item__name">The Music Room</span>
-            <span class="space-item__chevron">▼</span>
-          </button>
-          <div class="space-item__body">
-            <p class="space-item__desc">The stunning music room of Ashton Court Mansion can be hired for events, conferences, rehearsals, exhibitions and performances. A breathtaking, characterful space full of period detail and natural light.</p>
-            <a href="Enquire.html" class="space-item__enquire">Enquire about hire →</a>
-          </div>
+          <button class="space-item__trigger" onclick="toggleSpace('musicroom')"><span class="space-item__icon">🎼</span><span class="space-item__name">The Music Room</span><span class="space-item__chevron">▼</span></button>
+          <div class="space-item__body"><p class="space-item__desc">The stunning music room of Ashton Court Mansion can be hired for events, conferences, rehearsals, exhibitions and performances. A breathtaking, characterful space full of period detail and natural light.</p><a href="Enquire.html" class="space-item__enquire">Enquire about hire →</a></div>
         </div>
-
         <div class="space-item" id="space-lounges">
-          <button class="space-item__trigger" onclick="toggleSpace('lounges')">
-            <span class="space-item__icon">🏛️</span>
-            <span class="space-item__name">Panelled Lounges</span>
-            <span class="space-item__chevron">▼</span>
-          </button>
-          <div class="space-item__body">
-            <p class="space-item__desc">Light and bright south-facing rooms of Georgian design with views over the South Lawn. Ideal for workshops, rehearsals, meetings and small performances in a refined historic setting.</p>
-            <a href="Enquire.html" class="space-item__enquire">Enquire about hire →</a>
-          </div>
+          <button class="space-item__trigger" onclick="toggleSpace('lounges')"><span class="space-item__icon">🏛️</span><span class="space-item__name">Panelled Lounges</span><span class="space-item__chevron">▼</span></button>
+          <div class="space-item__body"><p class="space-item__desc">Light and bright south-facing rooms of Georgian design with views over the South Lawn. Ideal for workshops, rehearsals, meetings and small performances in a refined historic setting.</p><a href="Enquire.html" class="space-item__enquire">Enquire about hire →</a></div>
         </div>
-
         <div class="space-item" id="space-greathall">
-          <button class="space-item__trigger" onclick="toggleSpace('greathall')">
-            <span class="space-item__icon">🏰</span>
-            <span class="space-item__name">The Great Hall</span>
-            <span class="space-item__chevron">▼</span>
-          </button>
-          <div class="space-item__body">
-            <p class="space-item__desc">One of the oldest venues in Bristol, the Great Hall dates back to the 15th century and is perfect for exhibitions, filming or soirées. An extraordinary and truly unique event space unlike any other in the city.</p>
-            <a href="Enquire.html" class="space-item__enquire">Enquire about hire →</a>
-          </div>
+          <button class="space-item__trigger" onclick="toggleSpace('greathall')"><span class="space-item__icon">🏰</span><span class="space-item__name">The Great Hall</span><span class="space-item__chevron">▼</span></button>
+          <div class="space-item__body"><p class="space-item__desc">One of the oldest venues in Bristol, the Great Hall dates back to the 15th century and is perfect for exhibitions, filming or soirées. An extraordinary and truly unique event space unlike any other in the city.</p><a href="Enquire.html" class="space-item__enquire">Enquire about hire →</a></div>
         </div>
-
-      </div><!-- /space-accordion -->
-
-      <div class="access-callout">
-        <span class="access-callout__icon">♿</span>
-        <div><strong>Accessible entrance:</strong> The main entrance is via the West Lawn Courtyard. Please contact us in advance to discuss any specific accessibility requirements.</div>
       </div>
+      <div class="access-callout"><span class="access-callout__icon">♿</span><div><strong>Accessible entrance:</strong> The main entrance is via the West Lawn Courtyard. Please contact us in advance to discuss any specific accessibility requirements.</div></div>
     </div>
+    <div class="panel-enquire-row"><a href="Enquire.html" class="btn btn--crimson">Enquire About Arts Mansion →</a></div>
+  </div>
 
-    <div class="panel-enquire-row">
-      <a href="Enquire.html" class="btn btn--crimson">Enquire About Arts Mansion →</a>
-    </div>
-
-  </div><!-- /panel-mansion -->
-
-
-  <!-- ════════════════════════════════
-       DETAIL PANEL: SPARKS BRISTOL
-       ════════════════════════════════ -->
+  <!-- SPARKS BRISTOL -->
   <div class="venue-detail-panel" id="panel-sparks">
-
     <div class="panel-header">
-      <div class="panel-header__image">
-        <img src="Sparks.jpg" alt="Sparks Bristol — art and sustainability hub">
-      </div>
+      <div class="panel-header__image"><img src="Sparks.jpg" alt="Sparks Bristol"></div>
       <div class="panel-header__info">
         <span class="panel-header__badge">Broadmead · Bristol City Centre</span>
         <h2 class="panel-header__title">Sparks Bristol</h2>
         <p class="panel-header__tagline">Explore what a greener, fairer and more creative future could look like</p>
-        <p class="panel-header__desc">A partnership between Artspace Lifespace and Global Goals Centre, breathing new life into the former M&S building. A hub for local artists, a reuse shop, repair services, and workshops on climate, equality and wellbeing.</p>
+        <p class="panel-header__desc">A partnership between Artspace Lifespace and Global Goals Centre, breathing new life into the former M&amp;S building. A hub for local artists, a reuse shop, repair services, and workshops on climate, equality and wellbeing.</p>
         <div class="panel-meta">
-          <div class="panel-meta__cell">
-            <div class="panel-meta__label">Address</div>
-            <div class="panel-meta__value">78 Broadmead<br>Bristol, BS1 3DS<br><a href="https://goo.gl/maps/sFq1gh1aJJiiNocj9" target="_blank" rel="noopener">Get directions →</a></div>
-          </div>
-          <div class="panel-meta__cell">
-            <div class="panel-meta__label">Opening Times</div>
-            <div class="panel-meta__value">Mon – Fri: 11am – 10pm<br>Weekends: 11am – 10pm</div>
-          </div>
-          <div class="panel-meta__cell">
-            <div class="panel-meta__label">Contact</div>
-            <div class="panel-meta__value"><a href="mailto:info@sparksbristol.co.uk">info@sparksbristol.co.uk</a><br>Link: <a href="https://sparksbristol.co.uk" target="_blank" rel="noopener">sparksbristol.co.uk →</a></div>
-          </div>
+          <div class="panel-meta__cell"><div class="panel-meta__label">Address</div><div class="panel-meta__value">78 Broadmead<br>Bristol, BS1 3DS<br><a href="https://goo.gl/maps/sFq1gh1aJJiiNocj9" target="_blank" rel="noopener">Get directions →</a></div></div>
+          <div class="panel-meta__cell"><div class="panel-meta__label">Opening Times</div><div class="panel-meta__value">Mon – Fri: 11am – 10pm<br>Weekends: 11am – 10pm</div></div>
+          <div class="panel-meta__cell"><div class="panel-meta__label">Contact</div><div class="panel-meta__value"><a href="mailto:info@sparksbristol.co.uk">info@sparksbristol.co.uk</a><br><a href="https://sparksbristol.co.uk" target="_blank" rel="noopener">sparksbristol.co.uk →</a></div></div>
         </div>
       </div>
     </div>
-
     <div class="panel-body">
-
-      <div class="panel-quote">
-        <blockquote>"Wonderful space, shops, and everything else! The only reason I venture into Broadmead these days and a little peek into what the future of our town centres could (should!) look like. Have bought beautiful gifts, fixed my sunglasses, and attended climate action workshops all in one place."</blockquote>
-        <cite>— Katharina, Sparks visitor</cite>
-      </div>
-
+      <div class="panel-quote"><blockquote>"Wonderful space, shops, and everything else! The only reason I venture into Broadmead these days and a little peek into what the future of our town centres could look like."</blockquote><cite>— Katharina, Sparks visitor</cite></div>
       <div class="panel-body__heading">Spaces at <span>Sparks Bristol</span> — click a space to expand</div>
-
       <div class="space-accordion">
-
         <div class="space-item" id="space-retail">
-          <button class="space-item__trigger" onclick="toggleSpace('retail')">
-            <span class="space-item__icon">🛍️</span>
-            <span class="space-item__name">Retail &amp; Market Space</span>
-            <span class="space-item__chevron">▼</span>
-          </button>
-          <div class="space-item__body">
-            <p class="space-item__desc">Independent retail space for artists and sustainable makers. The building hosts a reuse shop with recycled goods, repair services, and a range of creative independent stalls across multiple floors.</p>
-            <a href="Enquire.html" class="space-item__enquire">Enquire about hire →</a>
-          </div>
+          <button class="space-item__trigger" onclick="toggleSpace('retail')"><span class="space-item__icon">🛍️</span><span class="space-item__name">Retail &amp; Market Space</span><span class="space-item__chevron">▼</span></button>
+          <div class="space-item__body"><p class="space-item__desc">Independent retail space for artists and sustainable makers. The building hosts a reuse shop with recycled goods, repair services, and a range of creative independent stalls across multiple floors.</p><a href="Enquire.html" class="space-item__enquire">Enquire about hire →</a></div>
         </div>
-
         <div class="space-item" id="space-rd">
-          <button class="space-item__trigger" onclick="toggleSpace('rd')">
-            <span class="space-item__icon">🎨</span>
-            <span class="space-item__name">Artist R&amp;D Studios</span>
-            <span class="space-item__chevron">▼</span>
-          </button>
-          <div class="space-item__body">
-            <p class="space-item__desc">Private studios and office space for artists on the 2nd and 3rd floors at affordable rates. Flexible coworking creative desk space also available for day and weekly hire.</p>
-            <a href="Enquire.html" class="space-item__enquire">Enquire about studios →</a>
-          </div>
+          <button class="space-item__trigger" onclick="toggleSpace('rd')"><span class="space-item__icon">🎨</span><span class="space-item__name">Artist R&amp;D Studios</span><span class="space-item__chevron">▼</span></button>
+          <div class="space-item__body"><p class="space-item__desc">Private studios and office space for artists on the 2nd and 3rd floors at affordable rates. Flexible coworking creative desk space also available for day and weekly hire.</p><a href="Enquire.html" class="space-item__enquire">Enquire about studios →</a></div>
         </div>
-
         <div class="space-item" id="space-imagination">
-          <button class="space-item__trigger" onclick="toggleSpace('imagination')">
-            <span class="space-item__icon">🌱</span>
-            <span class="space-item__name">Department of Imagination</span>
-            <span class="space-item__chevron">▼</span>
-          </button>
-          <div class="space-item__body">
-            <p class="space-item__desc">Creative spaces where people harness the power of collective imagination — hosting workshops, installations and community education projects on sustainability, climate action and the future.</p>
-            <a href="Enquire.html" class="space-item__enquire">Enquire about hire →</a>
-          </div>
+          <button class="space-item__trigger" onclick="toggleSpace('imagination')"><span class="space-item__icon">🌱</span><span class="space-item__name">Department of Imagination</span><span class="space-item__chevron">▼</span></button>
+          <div class="space-item__body"><p class="space-item__desc">Creative spaces where people harness the power of collective imagination — hosting workshops, installations and community education projects on sustainability, climate action and the future.</p><a href="Enquire.html" class="space-item__enquire">Enquire about hire →</a></div>
         </div>
-
         <div class="space-item" id="space-events">
-          <button class="space-item__trigger" onclick="toggleSpace('events')">
-            <span class="space-item__icon">🎪</span>
-            <span class="space-item__name">Event Spaces</span>
-            <span class="space-item__chevron">▼</span>
-          </button>
-          <div class="space-item__body">
-            <p class="space-item__desc">Affordable event spaces on each floor for larger gatherings, performances, screenings and community events. Step-free access throughout, with lift access to all floors.</p>
-            <a href="Enquire.html" class="space-item__enquire">Enquire about hire →</a>
-          </div>
+          <button class="space-item__trigger" onclick="toggleSpace('events')"><span class="space-item__icon">🎪</span><span class="space-item__name">Event Spaces</span><span class="space-item__chevron">▼</span></button>
+          <div class="space-item__body"><p class="space-item__desc">Affordable event spaces on each floor for larger gatherings, performances, screenings and community events. Step-free access throughout, with lift access to all floors.</p><a href="Enquire.html" class="space-item__enquire">Enquire about hire →</a></div>
         </div>
-
-      </div><!-- /space-accordion -->
-
-      <div class="access-callout">
-        <span class="access-callout__icon">♿</span>
-        <div><strong>Fully accessible venue:</strong> Wide walkways accommodate wheelchairs and mobility scooters. Lift access to all floors. BSL and Braille fire procedures available. The <strong>Joey Pod</strong> provides a quiet sensory refuge. Prayer room on the ground floor. Dogs on leads are warmly welcomed.</div>
       </div>
+      <div class="access-callout"><span class="access-callout__icon">♿</span><div><strong>Fully accessible venue:</strong> Wide walkways accommodate wheelchairs and mobility scooters. Lift access to all floors. BSL and Braille fire procedures available. The <strong>Joey Pod</strong> provides a quiet sensory refuge. Prayer room on the ground floor. Dogs on leads are warmly welcomed.</div></div>
     </div>
+    <div class="panel-enquire-row"><a href="Enquire.html" class="btn btn--crimson">Enquire About Sparks Bristol →</a></div>
+  </div>
+</div>
 
-    <div class="panel-enquire-row">
-      <a href="Enquire.html" class="btn btn--crimson">Enquire About Sparks Bristol →</a>
-    </div>
-
-  </div><!-- /panel-sparks -->
-
-</div><!-- /container -->
-
-
-<!-- CTA strip -->
 <div class="enquire-strip">
   <div class="container">
     <h2>Not sure which venue is right for you?</h2>
@@ -829,10 +688,7 @@
   </div>
 </div>
 
-
-<!-- Chatbot -->
 <div class="chatbot-fab" onclick="toggleChat()" aria-label="Open chatbot">💬</div>
-
 <div id="chat-window" style="display:none;">
   <div class="chat-header">
     <span>💬 ASLS Assistant</span>
@@ -845,7 +701,6 @@
   </div>
 </div>
 
-<!-- Footer -->
 <footer class="site-footer">
   <div class="container">
     <div class="site-footer__inner">
@@ -863,14 +718,50 @@
         </div>
       </div>
     </div>
+    <div class="site-footer__bottom">© 2025 ArtSpace LifeSpace. Registered Charity No: 1168150.</div>
   </div>
 </footer>
 
-        
-
-        
 <script>
-  // Accessibility Controls 
+(function () {
+  var toggle    = document.getElementById('nav-toggle');
+  var mobileNav = document.getElementById('mobile-nav');
+  var backdrop  = document.getElementById('nav-backdrop');
+  var panel     = mobileNav.querySelector('.mobile-nav__panel');
+  function getHeaderBottom() {
+    var header = document.querySelector('.site-header');
+    return header ? Math.round(header.getBoundingClientRect().bottom) : 84;
+  }
+  function positionPanel() {
+    var bottom = getHeaderBottom();
+    panel.style.top    = bottom + 'px';
+    panel.style.height = 'calc(100vh - ' + bottom + 'px)';
+    backdrop.style.top = bottom + 'px';
+  }
+  function openNav() {
+    positionPanel();
+    mobileNav.classList.add('open');
+    toggle.classList.add('open');
+    toggle.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeNav() {
+    mobileNav.classList.remove('open');
+    toggle.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+  toggle.addEventListener('click', function () {
+    mobileNav.classList.contains('open') ? closeNav() : openNav();
+  });
+  backdrop.addEventListener('click', closeNav);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && mobileNav.classList.contains('open')) closeNav();
+  });
+  window.addEventListener('resize', function () {
+    if (mobileNav.classList.contains('open')) positionPanel();
+  });
+}());
 document.getElementById('high-contrast').addEventListener('click', function() {
   document.body.classList.toggle('high-contrast');
   this.textContent = document.body.classList.contains('high-contrast') ? '◑ Standard' : '◑ High Contrast';
@@ -879,39 +770,23 @@ document.getElementById('increase-text').addEventListener('click', function() {
   document.body.classList.toggle('large-text');
   this.textContent = document.body.classList.contains('large-text') ? 'Aa Normal Text' : 'Aa Larger Text';
 });
-
-// ── Venue panel toggle ──────────────────────
 function toggleVenue(id) {
-  const panel = document.getElementById('panel-' + id);
-  const card  = document.getElementById('card-' + id);
-  const isOpen = panel.classList.contains('open');
-
-  // Close all panels and deactivate all cards
-  document.querySelectorAll('.venue-detail-panel').forEach(p => p.classList.remove('open'));
-  document.querySelectorAll('.venue-card').forEach(c => c.classList.remove('active'));
-
+  var panel = document.getElementById('panel-' + id);
+  var card  = document.getElementById('card-' + id);
+  var isOpen = panel.classList.contains('open');
+  document.querySelectorAll('.venue-detail-panel').forEach(function(p) { p.classList.remove('open'); });
+  document.querySelectorAll('.venue-card').forEach(function(c) { c.classList.remove('active'); });
   if (!isOpen) {
     panel.classList.add('open');
     card.classList.add('active');
-    // Smooth scroll to just above the panel
-    setTimeout(() => {
-      panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 60);
+    setTimeout(function() { panel.scrollIntoView({ behavior:'smooth', block:'start' }); }, 60);
   }
 }
-
-// ── Individual space accordion ──────────────
 function toggleSpace(id) {
-  const item = document.getElementById('space-' + id);
-  const isOpen = item.classList.contains('open');
-
-  // Close all siblings within same accordion
-  const siblings = item.closest('.space-accordion').querySelectorAll('.space-item');
-  siblings.forEach(s => s.classList.remove('open'));
-
-  if (!isOpen) {
-    item.classList.add('open');
-  }
+  var item = document.getElementById('space-' + id);
+  var isOpen = item.classList.contains('open');
+  item.closest('.space-accordion').querySelectorAll('.space-item').forEach(function(s) { s.classList.remove('open'); });
+  if (!isOpen) { item.classList.add('open'); }
 }
 </script>
 <script src="chatbot.js"></script>

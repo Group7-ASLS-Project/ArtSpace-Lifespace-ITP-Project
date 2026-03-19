@@ -105,7 +105,6 @@
   font-size: 0.9rem;
 }
 
-/* Sidebar info */
 .enquiry-sidebar {
   display: flex;
   flex-direction: column;
@@ -144,7 +143,9 @@
   font-weight: 500;
 }
 
-.info-card a:hover { text-decoration: underline; }
+.info-card a:hover {
+  text-decoration: underline;
+}
 
 .venue-mini {
   display: flex;
@@ -185,9 +186,15 @@
 }
 
 @media (max-width: 900px) {
-  .enquiry-layout { grid-template-columns: 1fr; }
-  .enquiry-sidebar { order: -1; }
-  .enquiry-form-card { padding: 18px 16px; }
+  .enquiry-layout {
+    grid-template-columns: 1fr;
+  }
+  .enquiry-sidebar {
+    order: -1;
+  }
+  .enquiry-form-card {
+    padding: 18px 16px;
+  }
 }
 </style>
 </head>
@@ -218,8 +225,24 @@
         <li><a href="Enquire.html" class="btn btn--crimson active" style="padding:5px 14px;font-size:0.78rem;"><span>Enquire</span></a></li>
       </ul>
     </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
+
+<div class="mobile-nav" id="mobile-nav" role="dialog" aria-modal="true" aria-label="Site navigation">
+  <div class="mobile-nav__backdrop" id="nav-backdrop"></div>
+  <div class="mobile-nav__panel">
+    <ul class="mobile-nav__links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="Venues.html">Venues</a></li>
+      <li><a href="Events.html">Events</a></li>
+      <li><a href="Community.html">Community</a></li>
+      <li><a href="Enquire.html" class="active">Enquire</a></li>
+    </ul>
+  </div>
+</div>
 
 <section class="page-hero" style="padding:28px 0 22px;">
   <div class="page-hero__bg" style="background-image:url('ArtsMansion.PNG')"></div>
@@ -234,25 +257,19 @@
 
 <div class="container">
   <div class="enquiry-layout">
-
-    <!-- Form -->
     <section id="enquire" class="enquiry-form-card">
       <h2>Make an Enquiry</h2>
       <p class="subtitle">Fill in the form below, or use the chatbot (bottom right) to book step by step.</p>
-
       <div id="status-message"></div>
-
       <form id="main-enquiry-form">
         <div class="form-group">
           <label for="name">Your Name</label>
           <input id="name" type="text" required placeholder="Full name">
         </div>
-
         <div class="form-group">
           <label for="email">Email Address</label>
           <input id="email" type="email" required placeholder="you@example.com">
         </div>
-
         <div class="form-group">
           <label for="building">Venue</label>
           <select id="building" required>
@@ -262,55 +279,38 @@
             <option value="sparks-bristol">Sparks Bristol</option>
           </select>
         </div>
-
         <div class="form-group">
           <label for="message">Your Message</label>
           <textarea id="message" required placeholder="Tell us about your event, expected attendees, preferred dates, and any other details…"></textarea>
         </div>
-
         <button id="submit-btn" class="submit-btn" type="submit">Submit Enquiry →</button>
       </form>
     </section>
-
-    <!-- Sidebar -->
     <aside class="enquiry-sidebar">
       <div class="info-card">
         <h3><span>📍</span> Our Venues</h3>
         <div class="venue-mini">
-          <div class="venue-mini-item">
-            <div class="venue-mini-item__dot"></div>
-            <span><strong>The Island</strong> — 50–100 people, city centre</span>
-          </div>
-          <div class="venue-mini-item">
-            <div class="venue-mini-item__dot"></div>
-            <span><strong>Arts Mansion</strong> — 100–200 people, Ashton Court</span>
-          </div>
-          <div class="venue-mini-item">
-            <div class="venue-mini-item__dot"></div>
-            <span><strong>Sparks Bristol</strong> — 30–80 people, step-free access</span>
-          </div>
+          <div class="venue-mini-item"><div class="venue-mini-item__dot"></div><span><strong>The Island</strong> — 50–100 people, city centre</span></div>
+          <div class="venue-mini-item"><div class="venue-mini-item__dot"></div><span><strong>Arts Mansion</strong> — 100–200 people, Ashton Court</span></div>
+          <div class="venue-mini-item"><div class="venue-mini-item__dot"></div><span><strong>Sparks Bristol</strong> — 30–80 people, step-free access</span></div>
         </div>
       </div>
-
       <div class="info-card">
         <h3><span>📞</span> Contact Us Directly</h3>
         <p>Office open weekdays 10am – 4pm<br>
           <a href="tel:01173763457">0117 3763 457</a><br>
-          <div><a href="mailto:info@artspacelifespace.com">info@artspacelifespace.com</a></div>
+          <a href="mailto:info@artspacelifespace.com">info@artspacelifespace.com</a>
         </p>
       </div>
-
       <div class="chatbot-tip">
         <strong>💬 Prefer a guided experience?</strong>
         Use the chatbot (bottom right) to book your event step by step — it'll fill out this form for you automatically.
       </div>
     </aside>
-
   </div>
 </div>
 
 <div class="chatbot-fab" onclick="toggleChat()" aria-label="Open chatbot">💬</div>
-
 <div id="chat-window" style="display:none;">
   <div class="chat-header">
     <span>💬 ASLS Assistant</span>
@@ -344,13 +344,50 @@
   </div>
 </footer>
 
-<!-- Accessibility Controls -->
 <script>
+(function () {
+  var toggle    = document.getElementById('nav-toggle');
+  var mobileNav = document.getElementById('mobile-nav');
+  var backdrop  = document.getElementById('nav-backdrop');
+  var panel     = mobileNav.querySelector('.mobile-nav__panel');
+  function getHeaderBottom() {
+    var header = document.querySelector('.site-header');
+    return header ? Math.round(header.getBoundingClientRect().bottom) : 84;
+  }
+  function positionPanel() {
+    var bottom = getHeaderBottom();
+    panel.style.top    = bottom + 'px';
+    panel.style.height = 'calc(100vh - ' + bottom + 'px)';
+    backdrop.style.top = bottom + 'px';
+  }
+  function openNav() {
+    positionPanel();
+    mobileNav.classList.add('open');
+    toggle.classList.add('open');
+    toggle.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeNav() {
+    mobileNav.classList.remove('open');
+    toggle.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+  toggle.addEventListener('click', function () {
+    mobileNav.classList.contains('open') ? closeNav() : openNav();
+  });
+  backdrop.addEventListener('click', closeNav);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && mobileNav.classList.contains('open')) closeNav();
+  });
+  window.addEventListener('resize', function () {
+    if (mobileNav.classList.contains('open')) positionPanel();
+  });
+}());
 document.getElementById('high-contrast').addEventListener('click', function() {
   document.body.classList.toggle('high-contrast');
-  this.textContent = document.body.classList.contains('high-contrast') ? '\u25d1 Standard' : '\u25d1 High Contrast';
+  this.textContent = document.body.classList.contains('high-contrast') ? '◑ Standard' : '◑ High Contrast';
 });
-
 document.getElementById('increase-text').addEventListener('click', function() {
   document.body.classList.toggle('large-text');
   this.textContent = document.body.classList.contains('large-text') ? 'Aa Normal Text' : 'Aa Larger Text';

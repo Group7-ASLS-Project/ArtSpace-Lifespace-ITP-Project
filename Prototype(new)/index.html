@@ -6,7 +6,6 @@
 <title>ArtSpace LifeSpace | Creative Spaces for Bristol</title>
 <link rel="stylesheet" href="styles.css">
 <style>
-/* ── Page-specific: index.html ── */
 .hero-home {
   position: relative;
   overflow: hidden;
@@ -50,9 +49,12 @@
   margin-bottom: 22px;
 }
 
-.hero-home__cta { display: flex; gap: 12px; flex-wrap: wrap; }
+.hero-home__cta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
 
-/* ── Stat strip ── */
 .stat-strip {
   background: var(--crimson);
   padding: 18px 0;
@@ -61,7 +63,6 @@
 .stat-strip__inner {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0;
 }
 
 .stat-strip__item {
@@ -91,7 +92,6 @@
   opacity: 0.9;
 }
 
-/* ── Intro section ── */
 .intro-section {
   padding: 44px 0;
   background: var(--surface);
@@ -128,7 +128,6 @@
   object-fit: cover;
 }
 
-/* ── Venues strip ── */
 .venues-strip {
   padding: 44px 0;
   background: var(--surface);
@@ -161,7 +160,9 @@
   transition: transform 0.55s cubic-bezier(0.4,0,0.2,1);
 }
 
-.venue-card:hover .venue-card__bg { transform: scale(1.06); }
+.venue-card:hover .venue-card__bg {
+  transform: scale(1.06);
+}
 
 .venue-card__overlay {
   position: absolute;
@@ -215,9 +216,11 @@
   transition: var(--transition);
 }
 
-.venue-card:hover .venue-card__cta { color: #fff; border-color: rgba(255,255,255,0.5); }
+.venue-card:hover .venue-card__cta {
+  color: #fff;
+  border-color: rgba(255,255,255,0.5);
+}
 
-/* ── Mission callout ── */
 .mission-callout {
   background: var(--black);
   padding: 48px 0;
@@ -250,18 +253,29 @@
   font-weight: 700;
 }
 
-.mission-callout blockquote span { color: var(--gold); }
+.mission-callout blockquote span {
+  color: var(--gold);
+}
 
 @media (max-width: 768px) {
-  .intro-section__inner { grid-template-columns: 1fr; gap: 12px; }
-  .stat-strip__inner { grid-template-columns: 1fr; gap: 12px; }
-  .stat-strip__item + .stat-strip__item { border-left: none; border-top: 1px solid rgba(255,255,255,0.25); padding-top: 20px; }
+  .intro-section__inner {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .stat-strip__inner {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .stat-strip__item + .stat-strip__item {
+    border-left: none;
+    border-top: 1px solid rgba(255,255,255,0.25);
+    padding-top: 20px;
+  }
 }
 </style>
 </head>
 <body>
 
-<!-- Top Bar -->
 <div class="top-bar">
   <div class="container top-bar__inner">
     <span class="top-bar__note">Need help? Use the chatbot ↘ or visit the enquiry form</span>
@@ -272,15 +286,11 @@
   </div>
 </div>
 
-<!-- Header -->
 <header class="site-header">
   <div class="container site-header__inner">
     <a href="index.html" class="logo">
       <img src="LifespaceLogo.PNG" alt="ArtSpace LifeSpace logo">
-      <div class="logo__text">
-        ArtSpace LifeSpace
-        <span>Bristol Arts Charity</span>
-      </div>
+      <div class="logo__text">ArtSpace LifeSpace<span>Bristol Arts Charity</span></div>
     </a>
     <nav>
       <ul>
@@ -291,15 +301,30 @@
         <li><a href="Enquire.html" class="btn btn--crimson" style="padding:5px 14px;font-size:0.78rem;"><span>Enquire</span></a></li>
       </ul>
     </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
-<!-- Hero -->
+<div class="mobile-nav" id="mobile-nav" role="dialog" aria-modal="true" aria-label="Site navigation">
+  <div class="mobile-nav__backdrop" id="nav-backdrop"></div>
+  <div class="mobile-nav__panel">
+    <ul class="mobile-nav__links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="Venues.html">Venues</a></li>
+      <li><a href="Events.html">Events</a></li>
+      <li><a href="Community.html">Community</a></li>
+      <li><a href="Enquire.html">Enquire</a></li>
+    </ul>
+  </div>
+</div>
+
 <section class="hero-home">
   <div class="hero-home__bg"></div>
   <div class="container hero-home__content">
     <div class="section-label"><span>Since 2001</span></div>
-    <h1>Creative Spaces for <em>Artists & Communities</em></h1>
+    <h1>Creative Spaces for <em>Artists &amp; Communities</em></h1>
     <p>Transforming vacant buildings into thriving cultural centres across Bristol and North Somerset.</p>
     <div class="hero-home__cta">
       <a href="Venues.html" class="btn btn--crimson">Explore Our Venues</a>
@@ -308,7 +333,6 @@
   </div>
 </section>
 
-<!-- Stat Strip -->
 <div class="stat-strip">
   <div class="container stat-strip__inner">
     <div class="stat-strip__item">
@@ -326,7 +350,6 @@
   </div>
 </div>
 
-<!-- Intro -->
 <section class="intro-section">
   <div class="container intro-section__inner">
     <div class="intro-section__text">
@@ -342,7 +365,6 @@
   </div>
 </section>
 
-<!-- Venues -->
 <section class="venues-strip">
   <div class="container">
     <div class="section-label"><span>Our Spaces</span></div>
@@ -383,21 +405,15 @@
   </div>
 </section>
 
-<!-- Mission callout -->
 <section class="mission-callout">
   <div class="container mission-callout__inner">
     <div class="section-label"><span style="color:rgba(231,210,19,0.7);">Our Mission</span></div>
-    <blockquote>
-      "Curating and caring for diverse spaces to create welcoming places where <span>artists can create, collaborate and present their work</span> for the public."
-    </blockquote>
+    <blockquote>"Curating and caring for diverse spaces to create welcoming places where <span>artists can create, collaborate and present their work</span> for the public."</blockquote>
     <a href="Community.html" class="btn btn--gold">Learn More About Us →</a>
   </div>
 </section>
 
-<!-- Chatbot FAB -->
 <div class="chatbot-fab" onclick="toggleChat()" aria-label="Open chatbot">💬</div>
-
-<!-- Chat Window -->
 <div id="chat-window" style="display:none;">
   <div class="chat-header">
     <span>💬 ASLS Assistant</span>
@@ -410,7 +426,6 @@
   </div>
 </div>
 
-<!-- Footer -->
 <footer class="site-footer">
   <div class="container">
     <div class="site-footer__inner">
@@ -432,13 +447,50 @@
   </div>
 </footer>
 
-<!-- Accessibility Controls -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
+(function () {
+  var toggle    = document.getElementById('nav-toggle');
+  var mobileNav = document.getElementById('mobile-nav');
+  var backdrop  = document.getElementById('nav-backdrop');
+  var panel     = mobileNav.querySelector('.mobile-nav__panel');
+  function getHeaderBottom() {
+    var header = document.querySelector('.site-header');
+    return header ? Math.round(header.getBoundingClientRect().bottom) : 84;
+  }
+  function positionPanel() {
+    var bottom = getHeaderBottom();
+    panel.style.top    = bottom + 'px';
+    panel.style.height = 'calc(100vh - ' + bottom + 'px)';
+    backdrop.style.top = bottom + 'px';
+  }
+  function openNav() {
+    positionPanel();
+    mobileNav.classList.add('open');
+    toggle.classList.add('open');
+    toggle.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeNav() {
+    mobileNav.classList.remove('open');
+    toggle.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+  toggle.addEventListener('click', function () {
+    mobileNav.classList.contains('open') ? closeNav() : openNav();
+  });
+  backdrop.addEventListener('click', closeNav);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && mobileNav.classList.contains('open')) closeNav();
+  });
+  window.addEventListener('resize', function () {
+    if (mobileNav.classList.contains('open')) positionPanel();
+  });
+}());
 document.getElementById('high-contrast').addEventListener('click', function() {
   document.body.classList.toggle('high-contrast');
   this.textContent = document.body.classList.contains('high-contrast') ? '◑ Standard' : '◑ High Contrast';
 });
-
 document.getElementById('increase-text').addEventListener('click', function() {
   document.body.classList.toggle('large-text');
   this.textContent = document.body.classList.contains('large-text') ? 'Aa Normal Text' : 'Aa Larger Text';
