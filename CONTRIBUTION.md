@@ -1,7 +1,7 @@
 # Contribution Log – Artspace Lifespace ITP Project
 
 ## Joel (J2-SHELVI)
-- Created and formatted Timebox 2 and 3 and 4 reflections
+- Created and formatted Timebox 2 and 3 and 4 amnd 5 reflections
 - Drafted and uploaded Consent Form, Success Criteria, Mockup Framework
 - Designed and coded dummy page
 - Structured GitHub folders and README
